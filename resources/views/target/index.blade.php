@@ -35,8 +35,7 @@
                     <div class="small-box bg-success">
                         <div class="inner">
                             <h4>Periode Target</h4>
-                            <p>{{ $tahun }} <br>
-                            </p>
+                            <p>{{ $periode->bulan }} - {{ $periode->tahun }}</p>
                         </div>
                     </div>
                 </div>

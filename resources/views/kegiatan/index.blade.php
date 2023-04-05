@@ -22,17 +22,69 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h4>{{ Auth::user()->nama }}</h4>
+                            <p>{{ Auth::user()->jabatan }} - {{ Auth::user()->instalasi }}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h4>Periode</h4>
+                            <p>{{ $periode->bulan }} - {{ $periode->tahun }}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h4>Atasan 1</h4>
+                            <p>{{ $atasan1 }}</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h4>Atasan 2</h4>
+                            <p>{{ $atasan2 }}</p>
+                        </div>
+                    </div>
+                </div>
+                    
+
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Data Kegiatan</h3>
+                            <h3 class="card-title">
+                                <form>
+                                <table>
+                                    <tr>
+                                        <td> 
+                                            <select class="form-control" name="tugas" width='100'>
+                                                @foreach ($target as $i)
+                                                    <option value="{{ $i->tugas }}">{{ $i->tugas }}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                        <td><input type="text" class="form-control" name="indikator" placeholder="DO/Uraian Kinerja"></td>
+                                        <td><input type="number" class="form-control" name="target" placeholder="Tanggal"></td>
+                                        <td><input type="number" class="form-control" name="target" placeholder="Order"></td>
+                                        <td><input type="number" class="form-control" name="persentase"  placeholder="Jumlah"></td>
+                                    </tr>
+                                </table>
+                            </form></h3>
                         </div>
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <td>Nama</td>
-                                        <td>Bulan - Tahun</td>
                                         <td>Tanggal</td>
                                         <td>Tugas</td>
                                         <td>Uraian</td>
@@ -42,8 +94,6 @@
                                 <tbody>
                                     @foreach ($all as $d)
                                     <tr>
-                                        <td>{{ $d->nama }}</td>
-                                        <td>{{ $d->bulan }} - {{ $d->tahun }}</td>
                                         <td>{{ $d->tanggal }}</td>
                                         <td>{{ $d->tugas }}</td>
                                         <td>{{ $d->uraian }}</td>

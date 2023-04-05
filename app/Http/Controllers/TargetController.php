@@ -13,11 +13,12 @@ class TargetController extends Controller
     public function index()
     {
        
-        $year = date('Y');
+        $data['periode'] = json_decode(request()->cookie('ekin-periode'));
+        $periode = json_decode(request()->cookie('ekin-periode'));
 
         $pegawai = DataPegawai::where('api_id',Auth::user()->api_id)->first();
-        $data['tahun'] = $year;
-        $data['all'] = Target::where('bulan',$year)->where('nama',$pegawai->nama)->get();
+
+        $data['all'] = Target::where('bulan',$periode->tahun)->where('nama',$pegawai->nama)->get();
         $data['atasan1'] = $pegawai->atasan1;
         $data['atasan2'] = $pegawai->atasan2;
 

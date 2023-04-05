@@ -75,4 +75,36 @@ class LoginController extends Controller
         return redirect(route('login'));
     }
 
+    public function periode(Request $request)
+    {
+        $this->validate($request, [
+            'bulan' => 'required', 
+            'tahun' => 'required' 
+        ]);
+
+        $periode = json_decode($request->cookie('ekin-periode'), true); 
+        
+        $periode = [
+            'bulan' => $request->bulan,
+            'tahun' => $request->tahun
+        ];
+
+        $cookie = cookie('ekin-periode', json_encode($periode), 2880);
+        return redirect()->back()->cookie($cookie);
+    }
+
+    private function getPeriode()
+    {
+        $periode = json_decode(request()->cookie('ekin-periode'), true);
+        $periode = $periode != '' ? $periode:[];
+        return $periode;
+    }
+
+    public function listPeriode()
+    {
+        $periode = $this->getPeriode();
+
+        return view('administrator.index', compact('periode'));
+    }
+
 }

@@ -5,20 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Kegiatan;
 use App\DataPegawai;
+use App\Target;
 use Auth;
 
 class KegiatanController extends Controller
 {
     public function index()
     {
-        $month = date('m',strtotime("-1 month"));
-        $bulan = new Kegiatan();
-        $b = $bulan->bulan($month);
+        $data['periode'] = json_decode(request()->cookie('ekin-periode'));
+        $periode = json_decode(request()->cookie('ekin-periode'));
+
+
 
         $pegawai = DataPegawai::where('api_id',Auth::user()->api_id)->first();
+        $data['target'] = Target::where('nama',$pegawai->nama)->where('bulan',$periode->tahun)->get();
 
-        $year = date('Y');
-        $data['all'] = Kegiatan::where('bulan',$bulan->bulan($month))->where('tahun',$year)->where('nama',$pegawai->nama)->orderBy('tanggal','ASC')->get();
+        $data['all'] = Kegiatan::where('bulan',$periode->bulan)->where('tahun',$periode->tahun)->where('nama',$pegawai->nama)->orderBy('tanggal','ASC')->get();
+        $data['atasan1'] = $pegawai->atasan1;
+        $data['atasan2'] = $pegawai->atasan2;
         return view('kegiatan.index', $data);
     }
 

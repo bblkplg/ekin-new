@@ -6,9 +6,10 @@
       </li>
     </ul>
 
-    @php
-      $periode = json_decode(request()->cookie('ekin-periode'));
-    @endphp
+  @php
+    $periode = json_decode(request()->cookie('ekin-periode'));
+    $periode = $periode != '' ? $periode:[];
+  @endphp
     Periode
     <div class="container-fluid">
       <form class="form-inline" action="{{ route('periode') }}" method="POST">

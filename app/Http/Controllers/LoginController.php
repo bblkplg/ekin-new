@@ -25,47 +25,21 @@ class LoginController extends Controller
             'password' => 'required|string'
         ]);
 
-        // $nama = request()->nama;
-        // $password = request()->password;
-
-        // $auth = $request->only('nama', 'password');
+    
         $user = DataPegawai::where('nama', request()->nama)->where('password', request()->password)->first();
         if($user) {
             Auth::login($user);
-            // dd(Auth::user()->nama);
-            // return redirect()->intended(route('dashboard'));
+          
             return view('administrator.index');
         }
 
-        
-        // if (auth()->guard('pegawai')->attempt(array('nama' => $nama,'password' => $password))) {
-           
-        //     return redirect()->intended(route('dashboard'));
-        // }
         return redirect()->back()->with(['loginError' => 'Nama / Password Salah']);
-
-            // $nama = request()->nama;
-            // $password = request()->password;
-
-            // //in my table users, status must be 1 to login into app
-            // $matchWhere = ['nama' => $nama, 'password' => $password];
-
-            // $count = DataPegawai::where($matchWhere)->count();
-
-            // if ($count == 1) {
-            //     $user = DataPegawai::where($matchWhere)->first();
-            //     Auth::loginUsingId($user->api_id);   
-            //     return redirect()->intended(route('dashboard'));
-            // } else {
-            //     //not status active or password or email is wrong
-            //     $validator->errors()->add('Unauthorized', 'Not accepted in community yet');
-            //     return redirect('/')->withErrors($validator)->withInput();
-            // }
     }
 
     public function dashboard()
     {
-
+        $data['periode'] = json_decode(request()->cookie('ekin-periode'));
+        $periode = json_decode(request()->cookie('ekin-periode'));
         return view('administrator.index');
     }
 

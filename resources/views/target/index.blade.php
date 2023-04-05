@@ -68,8 +68,10 @@
                                     <table>
                                         <tr>
                                             <td> 
-                                                <select class="form-control" name="tugas">
-                                                    <option>indikator</option>
+                                                <select class="form-control" name="tugas" width='100'>
+                                                    @foreach ($indikator as $i)
+                                                        <option value="{{ $i->indikator }}">{{ $i->indikator }}</option>
+                                                    @endforeach
                                                 </select>
                                             </td>
                                             <td><input type="number" class="form-control" name="target" placeholder="Target"></td>

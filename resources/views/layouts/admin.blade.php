@@ -30,6 +30,14 @@
   <link rel="stylesheet" href="{{ asset('admin/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('admin/plugins/summernote/summernote-bs4.min.css') }}">
+  <style>
+    @media (max-width: 830px) {
+  .form-inline {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
+  </style>
   @yield('css')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">

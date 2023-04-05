@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use App\Target;
 use App\DataPegawai;
 use Auth;
+use App\Indikator;
 
 class TargetController extends Controller
 {
     public function index()
     {
+       
         $year = date('Y');
 
         $pegawai = DataPegawai::where('api_id',Auth::user()->api_id)->first();
@@ -18,6 +20,8 @@ class TargetController extends Controller
         $data['all'] = Target::where('bulan',$year)->where('nama',$pegawai->nama)->get();
         $data['atasan1'] = $pegawai->atasan1;
         $data['atasan2'] = $pegawai->atasan2;
+
+        $data['indikator'] = Indikator::where('instalasi',$pegawai->instalasi)->get();
         return view('target.index', $data);
     }
 

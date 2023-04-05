@@ -19,13 +19,18 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/', 'DataPegawaiController@index');
 
-Route::get('/', 'LoginController@index')->middleware('guest');
+Route::get('/', 'LoginController@index')->middleware('guest')->name('login');
 Route::post('/dologin', 'LoginController@authenticate');
+Route::get('logout', 'LoginController@logout')->name('logout'); 
 
 Route::get('/dashboard', 'LoginController@dashboard')->name('dashboard');
 Route::get('/data-pegawai', 'DataPegawaiController@index')->name('data-pegawai');
 
 Route::get('/indikator', 'IndikatorController@index')->name('indikator.index');
+Route::get('/indikator-create', 'IndikatorController@create')->name('indikator.create');
+Route::get('/indikator-destroy', 'IndikatorController@destroy')->name('indikator.destroy');
+Route::get('/indikator-edit', 'IndikatorController@edit')->name('indikator.edit');
+Route::post('/indikator-update', 'IndikatorController@update')->name('indikator.update');
 
 Route::get('/target', 'TargetController@index')->name('target');
 Route::get('/target-create', 'TargetController@create')->name('target.create');

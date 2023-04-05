@@ -21,4 +21,25 @@ class KegiatanController extends Controller
         $data['all'] = Kegiatan::where('bulan',$bulan->bulan($month))->where('tahun',$year)->where('nama',$pegawai->nama)->orderBy('tanggal','ASC')->get();
         return view('kegiatan.index', $data);
     }
+
+    public function create(){
+
+        return view ('kegiatan.create');
+    }
+
+    public function store(Request $request, Indicator $indicator)
+    {
+        $this->validate($request, [
+            'nama' => 'required',
+            'instalasi' => 'required',
+            'bulan' => 'required',
+            'tugas' => 'required',
+            'target' => 'required',
+            'persentase' => 'required'
+        ]);
+
+        $target = Kegiatan::create($request->all());
+
+        return redirect()->back()->with(['success' => __('Data berhasil di tambah')]);
+    }
 }

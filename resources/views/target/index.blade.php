@@ -30,7 +30,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-success">
                         <div class="inner">
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-warning">
                         <div class="inner">
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-danger">
                         <div class="inner">
@@ -58,8 +58,8 @@
                         </div>
                     </div>
                 </div>
-                    
-              
+
+
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
@@ -67,7 +67,7 @@
                                 <form>
                                     <table>
                                         <tr>
-                                            <td> 
+                                            <td>
                                                 <select class="form-control" name="tugas" width='100'>
                                                     @foreach ($indikator as $i)
                                                         <option value="{{ $i->indikator }}">{{ $i->indikator }}</option>
@@ -105,7 +105,7 @@
                                         <td>{{ $d->tugas }}</td>
                                         <td>{{ $d->target }}</td>
                                         <td>{{ $d->persentase }}</td>
-                                        <td> 
+                                        <td>
                                             <form action="{{ route('target.destroy', $d->nama) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
@@ -113,7 +113,7 @@
                                                 <button class="btn btn-danger btn-sm">Hapus</button>
                                             </form>
 
-                                            
+
                                         </td>
                                     </tr>
                                     @endforeach

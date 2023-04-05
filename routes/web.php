@@ -40,6 +40,4 @@ Route::post('/target-update', 'TargetController@update')->name('target.update');
 
 Route::get('/kegiatan', 'KegiatanController@index')->name('kegiatan');
 Route::get('/hasil', 'HasilController@index')->name('hasil');
-
-
 Route::post('/periode', 'LoginController@periode')->name('periode');

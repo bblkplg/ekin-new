@@ -30,7 +30,7 @@ class LoginController extends Controller
         if($user) {
             Auth::login($user);
           
-            return view('administrator.index');
+            return redirect(route('dashboard'));
         }
 
         return redirect()->back()->with(['loginError' => 'Nama / Password Salah']);
@@ -39,7 +39,7 @@ class LoginController extends Controller
     public function dashboard()
     {
         $data['periode'] = json_decode(request()->cookie('ekin-periode'));
-        $periode = json_decode(request()->cookie('ekin-periode'));
+        
         return view('administrator.index');
     }
 

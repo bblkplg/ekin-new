@@ -15,6 +15,7 @@
       <form class="form-inline" action="{{ route('periode') }}" method="POST">
         @csrf
         <label for="inlineFormEmail" class="m-2">Bulan</label>
+        @if (isset($periode->bulan) && $periode->bulan != '')
         <select class="form-control m-2" id="inlineFormEmail" name="bulan">
           <option value="Januari" @if ($periode->bulan == "Januari") {{ 'selected' }} @endif>Januari</option>
           <option value="Februari" @if ($periode->bulan == "Februari") {{ 'selected' }} @endif>Februari</option>
@@ -29,7 +30,28 @@
           <option value="November" @if ($periode->bulan == "November") {{ 'selected' }} @endif>November</option>
           <option value="Desember" @if ($periode->bulan == "Desember") {{ 'selected' }} @endif>Desember</option>
         </select>
+        @else
+        <select class="form-control m-2" id="inlineFormEmail" name="bulan">
+          <option>Pilih Bulan</option>
+          <option value="Januari" >Januari</option>
+          <option value="Februari">Februari</option>
+          <option value="Maret" >Maret</option>
+          <option value="April">April</option>
+          <option value="Mei">Mei</option>
+          <option value="Juni">Juni</option>
+          <option value="Juli">Juli</option>
+          <option value="Agustus">Agustus</option>
+          <option value="September">September</option>
+          <option value="Oktober">Oktober</option>
+          <option value="November">November</option>
+          <option value="Desember">Desember</option>
+        </select>
+        @endif
+       
+
+
         <label for="inlineFormPassword" class="m-2">Tahun</label>
+        @if (isset($periode->tahun) && $periode->tahun != '')
         <select class="form-control m-2" id="inlineFormEmail" name="tahun">
           @php
             $year = date('Y');
@@ -38,6 +60,18 @@
             <option value="{{ $i }}" @if ($periode->tahun == $i) {{ 'selected' }} @endif>{{ $i }}</option>
           @endfor
         </select>
+        @else
+        <select class="form-control m-2" id="inlineFormEmail" name="tahun">
+          <option>Pilih Tahun</option>
+          @php
+            $year = date('Y');
+          @endphp
+          @for ($i=2020; $i<=$year; $i++)
+            <option value="{{ $i }}">{{ $i }}</option>
+          @endfor
+        </select>
+        @endif
+       
         <button type="submit" class="btn btn-primary m-2">Submit</button>
       </form>
     </div>

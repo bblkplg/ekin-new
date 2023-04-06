@@ -34,8 +34,8 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="/dashboard" class="nav-link active">
+          <li class="nav-item">
+            <a href="{{route('dashboard')}}" class="nav-link {{ Request::routeIs('dashboard') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -43,7 +43,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('target')}}" class="nav-link">
+            <a href="{{ route('target')}}" class="nav-link {{ Request::routeIs('target') ? 'active' : '' }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Target
@@ -51,7 +51,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('kegiatan')}}" class="nav-link">
+            <a href="{{ route('kegiatan')}}" class="nav-link {{ Request::routeIs('kegiatan') ? 'active' : '' }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Kegiatan
@@ -59,7 +59,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('hasil')}}" class="nav-link">
+            <a href="{{ route('hasil')}}" class="nav-link  {{ Request::routeIs('hasil') ? 'active' : '' }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Hasil
@@ -76,13 +76,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('data-pegawai')}}" class="nav-link">
+                <a href="{{ route('data-pegawai')}}" class="nav-link  {{ Request::routeIs('data-pegawai') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Pegawai</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('indikator.index')}}" class="nav-link">
+                <a href="{{ route('indikator.index')}}" class="nav-link  {{ Request::routeIs('indikator.index') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Indikator</p>
                 </a>

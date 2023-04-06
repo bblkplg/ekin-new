@@ -38,8 +38,14 @@ Route::get('/target-destroy', 'TargetController@destroy')->name('target.destroy'
 Route::get('/target-edit', 'TargetController@edit')->name('target.edit');
 Route::post('/target-update', 'TargetController@update')->name('target.update');
 
-Route::get('/kegiatan', 'KegiatanController@index')->name('kegiatan');
-Route::get('/kegiatan-create', 'KegiatanController@store')->name('kegiatan.create');
+// Route::get('/kegiatan', 'KegiatanController@index')->name('kegiatan');
+// Route::get('/kegiatan-create', 'KegiatanController@store')->name('kegiatan.create');
+// Route::get('/kegiatan-edit', 'KegiatanController@edit')->name('kegiatan.edit');
+// Route::post('/kegiatan-update', 'KegiatanController@update')->name('kegiatan.update');
+// Route::put('/kegiatan-update/{kegiatan}', 'KegiatanController@update')->name('kegiatan.update');
+
+Route::resource('kegiatan','KegiatanController');
+
 
 
 Route::get('/hasil', 'HasilController@index')->name('hasil');

@@ -8,7 +8,8 @@ class Kegiatan extends Model
 {
     protected $table = 'kegiatan';
     protected $guarded = [];
-
+    protected $primaryKey = 'IdCatKegiatan';
+    public $timestamps = false;
     public function bulan($month)
     {
         if($month == 01){

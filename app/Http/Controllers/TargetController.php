@@ -16,10 +16,6 @@ class TargetController extends Controller
         $data['periode'] = json_decode(request()->cookie('ekin-periode'));
         $periode = json_decode(request()->cookie('ekin-periode'));
 
-        if(!isset($periode)){
-            return redirect(route('dashboard'))->with(['failed' => 'Silahkan pilih periode terlebih dahulu']);
-        }
-
         $pegawai = DataPegawai::where('api_id',Auth::user()->api_id)->first();
 
         $data['all'] = Target::where('nama',$pegawai->nama)->get();
@@ -52,7 +48,7 @@ class TargetController extends Controller
             'instalasi' => $request->instalasi,
             'bulan' => $request->bulan,
             'tugas' => $request->tugas,
-            'target' => $rquest->target,
+            'target' => $request->target,
             'persentase' => $request->persentase
         ]);
         return redirect(route('target'))->with(['success' => 'Target Baru Ditambahkan']);
@@ -89,7 +85,7 @@ class TargetController extends Controller
             'instalasi' => $request->instalasi,
             'bulan' => $request->bulan,
             'tugas' => $request->tugas,
-            'target' => $rquest->target,
+            'target' => $request->target,
             'persentase' => $request->persentase
         ]);
         return redirect(route('target'))->with(['success' => 'Data Target Diperbaharui']);
@@ -103,7 +99,7 @@ class TargetController extends Controller
 
 
         $target = Target::where('nama',$nama)->where('bulan',$bulan)->where('tugas',$tugas)->first();
-        $product->delete();
+        $target->delete();
         return redirect(route('target'))->with(['success' => 'Target Sudah Dihapus']);
     }
 

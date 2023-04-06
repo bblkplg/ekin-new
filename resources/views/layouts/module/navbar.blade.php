@@ -15,27 +15,27 @@
       <form class="form-inline" action="{{ route('periode') }}" method="POST">
         @csrf
         <label for="inlineFormEmail" class="m-2">Bulan</label>
-        {{-- <select class="form-control m-2" id="inlineFormEmail" name="bulan">
-          <option value="Januari" @if ($periode->bulan == "Januari") {{ 'selected' }} @endif>Januari</option>
-          <option value="Februari" @if ($periode->bulan == "Februari") {{ 'selected' }} @endif>Februari</option>
-          <option value="Maret" @if ($periode->bulan == "Maret") {{ 'selected' }} @endif>Maret</option>
-          <option value="April" @if ($periode->bulan == "April") {{ 'selected' }} @endif>April</option>
-          <option value="Mei" @if ($periode->bulan == "Mei") {{ 'selected' }} @endif>Mei</option>
-          <option value="Juni" @if ($periode->bulan == "Juni") {{ 'selected' }} @endif>Juni</option>
-          <option value="Juli" @if ($periode->bulan == "Juli") {{ 'selected' }} @endif>Juli</option>
-          <option value="Agustus" @if ($periode->bulan == "Agustus") {{ 'selected' }} @endif>Agustus</option>
-          <option value="September" @if ($periode->bulan == "September") {{ 'selected' }} @endif>September</option>
-          <option value="Oktober" @if ($periode->bulan == "Oktober") {{ 'selected' }} @endif>Oktober</option>
-          <option value="November" @if ($periode->bulan == "November") {{ 'selected' }} @endif>November</option>
-          <option value="Desember" @if ($periode->bulan == "Desember") {{ 'selected' }} @endif>Desember</option>
-        </select> --}}
+        <select class="form-control m-2" id="inlineFormEmail" name="bulan">
+          <option value="Januari" @if ("Januari") {{ 'selected' }} @endif>Januari</option>
+          <option value="Februari" @if ("Februari") {{ 'selected' }} @endif>Februari</option>
+          <option value="Maret" @if ("Maret") {{ 'selected' }} @endif>Maret</option>
+          <option value="April" @if ("April") {{ 'selected' }} @endif>April</option>
+          <option value="Mei" @if ("Mei") {{ 'selected' }} @endif>Mei</option>
+          <option value="Juni" @if ("Juni") {{ 'selected' }} @endif>Juni</option>
+          <option value="Juli" @if ("Juli") {{ 'selected' }} @endif>Juli</option>
+          <option value="Agustus" @if ("Agustus") {{ 'selected' }} @endif>Agustus</option>
+          <option value="September" @if ("September") {{ 'selected' }} @endif>September</option>
+          <option value="Oktober" @if ("Oktober") {{ 'selected' }} @endif>Oktober</option>
+          <option value="November" @if ("November") {{ 'selected' }} @endif>November</option>
+          <option value="Desember" @if ("Desember") {{ 'selected' }} @endif>Desember</option>
+        </select>
         <label for="inlineFormPassword" class="m-2">Tahun</label>
         <select class="form-control m-2" id="inlineFormEmail" name="tahun">
           @php
             $year = date('Y');
           @endphp
           {{-- @for ($i=2020; $i<=$year; $i++)
-            <option value="{{ $i }}" @if ($periode->tahun == $i) {{ 'selected' }} @endif>{{ $i }}</option>
+            <option value="{{ $i }}" {{ 'selected' }} @endif>{{ $i }}</option>
           @endfor --}}
         </select>
         <button type="submit" class="btn btn-primary m-2">Submit</button>

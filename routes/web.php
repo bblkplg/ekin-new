@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'LoginController@index')->middleware('guest')->name('login');
 Route::post('/dologin', 'LoginController@authenticate');
-Route::get('logout', 'LoginController@logout')->name('logout'); 
+Route::get('logout', 'LoginController@logout')->name('logout');
 
 Route::get('/dashboard', 'LoginController@dashboard')->name('dashboard');
 Route::get('/data-pegawai', 'DataPegawaiController@index')->name('data-pegawai');
@@ -39,5 +39,8 @@ Route::get('/target-edit', 'TargetController@edit')->name('target.edit');
 Route::post('/target-update', 'TargetController@update')->name('target.update');
 
 Route::get('/kegiatan', 'KegiatanController@index')->name('kegiatan');
+Route::get('/kegiatan-create', 'KegiatanController@store')->name('kegiatan.create');
+
+
 Route::get('/hasil', 'HasilController@index')->name('hasil');
 Route::post('/periode', 'LoginController@periode')->name('periode');

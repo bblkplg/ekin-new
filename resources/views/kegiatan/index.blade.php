@@ -30,16 +30,16 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-success">
                         <div class="inner">
                             <h4>Periode</h4>
-                            <p>{{ $periode->bulan }} - {{ $periode->tahun }}</p>
+                            {{-- <p>{{ $periode->bulan }} - {{ $periode->tahun }}</p> --}}
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-warning">
                         <div class="inner">
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-danger">
                         <div class="inner">
@@ -57,7 +57,7 @@
                         </div>
                     </div>
                 </div>
-                    
+
 
                 <div class="col-12">
                     <div class="card">
@@ -66,7 +66,7 @@
                                 <form>
                                 <table>
                                     <tr>
-                                        <td> 
+                                        <td>
                                             <select class="form-control" name="tugas" width='100'>
                                                 @foreach ($target as $i)
                                                     <option value="{{ $i->tugas }}">{{ $i->tugas }}</option>
@@ -77,6 +77,9 @@
                                         <td><input type="number" class="form-control" name="target" placeholder="Tanggal"></td>
                                         <td><input type="number" class="form-control" name="target" placeholder="Order"></td>
                                         <td><input type="number" class="form-control" name="persentase"  placeholder="Jumlah"></td>
+                                        <td class="float-right">
+                                            <a href="{{ route('target.create') }}" class="btn btn-primary btn-sm">Tambah</a>
+                                        </td>
                                     </tr>
                                 </table>
                             </form></h3>
@@ -89,6 +92,7 @@
                                         <td>Tugas</td>
                                         <td>Uraian</td>
                                         <td>No Order</td>
+                                        <td>Opsi</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -98,6 +102,14 @@
                                         <td>{{ $d->tugas }}</td>
                                         <td>{{ $d->uraian }}</td>
                                         <td>{{ $d->noorder }}</td>
+                                    <td>
+                                            <form action="{{ route('target.destroy', $d->nama) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <a href="{{ route('target.edit',['nama' => $d->nama,'bulan' => $d->bulan, 'tugas' => $d->tugas ]) }}" class="btn btn-warning btn-sm">Edit</a>
+                                                <button class="btn btn-danger btn-sm">Hapus</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>

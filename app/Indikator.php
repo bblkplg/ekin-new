@@ -8,5 +8,7 @@ class Indikator extends Model
 {
     protected $table = 'indikator';
     protected $primaryKey = 'idindikator';
-    protected $guarded = [];
+    protected $fillable = ['indikator','instalasi'];
+
+    public $timestamps = false;
 }

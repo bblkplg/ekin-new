@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Indikator;
 use App\DataPegawai;
 use Auth;
+use DB;
 
 class IndikatorController extends Controller
 {
@@ -15,25 +16,19 @@ class IndikatorController extends Controller
         $data['instalasi'] = $pegawai->instalasi;
         $data['all'] = Indikator::all();
 
-        return view('indikator.index', $data);
-    }
+        $data['ins'] = Indikator::distinct()->get(['instalasi']);
 
-    public function create()
-    {
-        return view('target.create');
+        return view('indikator.index', $data);
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'nama' => 'required',
-            'instalasi' => 'required',
-            'bulan' => 'required',
-            'tugas' => 'required',
-            'target' => 'required',
-            'persentase' => 'required'
+            'indikator' => 'required',
+            'instalasi' => 'required'
         ]);
 
+<<<<<<< HEAD
 
         $target = Target::create([
             'nama' => $request->nama,
@@ -45,33 +40,36 @@ class IndikatorController extends Controller
         ]);
         return redirect(route('target'))->with(['success' => 'Target Baru Ditambahkan']);
 
+=======
+        $indikator = Indikator::create([
+            'indikator' => $request->indikator,
+            'instalasi' => $request->instalasi
+        ]);
+        return redirect(route('indikator.index'))->with(['success' => 'Indikator Baru Ditambahkan']);
+>>>>>>> 5534ab9bacddd3107621b30b2c2777e87889a743
     }
 
-    public function edit(Request $request)
+    public function edit(Indikator $indikator)
     {
-        $nama = $request->get('nama');
-        $bulan= $request->get('bulan');
-        $tugas = $request->get('tugas');
-        $target = Target::where('nama',$nama)->where('bulan',$bulan)->where('tugas',$tugas)->first();
-        return view('target.edit', compact('target'));
+        $indikator = Indikator::find($indikator->idindikator);
+
+        $pegawai = DataPegawai::where('api_id',Auth::user()->api_id)->first();
+        $data['instalasi'] = $pegawai->instalasi;
+
+        $instalasi = Indikator::distinct()->get(['instalasi']);
+        return view('indikator.edit',compact('indikator','instalasi'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Indikator $indikator)
     {
-        $nama = $request->get('nama');
-        $bulan= $request->get('bulan');
-        $tugas = $request->get('tugas');
         $this->validate($request, [
-            'nama' => 'required',
-            'instalasi' => 'required',
-            'bulan' => 'required',
-            'tugas' => 'required',
-            'target' => 'required',
-            'persentase' => 'required'
+            'indikator' => 'required',
+            'instalasi' => 'required'
         ]);
 
-        $target = Target::where('nama',$nama)->where('bulan',$bulan)->where('tugas',$tugas)->first();
+        $indikator = Indikator::where('idindikator',$indikator->idindikator)->first();
 
+<<<<<<< HEAD
         $target->update([
             'nama' => $request->nama,
             'instalasi' => $request->instalasi,
@@ -79,20 +77,20 @@ class IndikatorController extends Controller
             'tugas' => $request->tugas,
             'target' => $rquest->target,
             'persentase' => $request->persentase
+=======
+        $indikator->update([
+            'indikator' => $request->indikator,
+            'instalasi' => $request->instalasi
+>>>>>>> 5534ab9bacddd3107621b30b2c2777e87889a743
         ]);
-        return redirect(route('target'))->with(['success' => 'Data Target Diperbaharui']);
+        return redirect(route('indikator.index'))->with(['success' => 'Data Indikator Diperbaharui']);
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request, Indikator $indikator)
     {
-        $nama = $request->get('nama');
-        $bulan= $request->get('bulan');
-        $tugas = $request->get('tugas');
-
-
-        $target = Target::where('nama',$nama)->where('bulan',$bulan)->where('tugas',$tugas)->first();
-        $product->delete();
-        return redirect(route('target'))->with(['success' => 'Target Sudah Dihapus']);
+        $indikator = Indikator::where('idindikator',$indikator->idindikator)->first();
+        $indikator->delete();
+        return redirect(route('indikator.index'))->with(['success' => 'Indikator Sudah Dihapus']);
     }
 
 }

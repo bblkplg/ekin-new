@@ -26,11 +26,21 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
+                            @if (session()->has('success'))
+                                <div class='alert alert-success alert-dismissible fade show' role='alert'>
+                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                    <h5><i class="icon fas fa-check"></i> Success!</h5>
+                                    {{ session('success')}}
+                                </div>
+                            @endif
+
                             <h3 class="card-title">
-                    
+                                List Data Indikator
                             </h3>
                             <div class="float-right">
-                                <a href="{{ route('indikator.create') }}" class="btn btn-primary btn-sm">Tambah</a>
+                                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
+                                    Tambah Data
+                                </button>
                             </div>
                         </div>
                         <div class="card-body">
@@ -48,21 +58,19 @@
                                     @php
                                         $no=1;
                                     @endphp
-                                    @foreach ($all as $d)
+                                    @foreach ($all as $indikator)
                                     <tr>
                                         <td>{{ $no++ }}</td>
-                                        <td>{{ $d->indikator }}</td>
-                                        <td>{{ $d->instalasi }}</td>
-                                        <td>{{ $d->idindikator }}</td>
+                                        <td>{{ $indikator->indikator }}</td>
+                                        <td>{{ $indikator->instalasi }}</td>
+                                        <td>{{ $indikator->idindikator }}</td>
                                         <td> 
-                                            <form action="{{ route('indikator.destroy', $d->nama) }}" method="post">
+                                            <form action="{{ route('indikator.destroy', [$indikator->idindikator]) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <a href="{{ route('indikator.edit',['nama' => $d->nama,'bulan' => $d->bulan, 'tugas' => $d->tugas ]) }}" class="btn btn-warning btn-sm">Edit</a>
+                                                <a href="{{ route('indikator.edit',[$indikator->idindikator]) }}" class="btn btn-warning btn-sm">Edit</a>
                                                 <button class="btn btn-danger btn-sm">Hapus</button>
                                             </form>
-
-                                            
                                         </td>
                                     </tr>
                                     @endforeach
@@ -70,6 +78,41 @@
                             </table>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modal-default">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Tambah Data</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                       <form method="POST" action="{{ route('indikator.store') }}">
+                        @csrf
+                            <div class="form-group">
+                                <label>Indikator</label>
+                                <input type="text" class="form-control" name="indikator" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Instalasi</label>
+                                <select class="form-control" name="instalasi">
+                                    @foreach ($ins as $data)
+                                        <option value="{{ $data->instalasi }}">{{ $data->instalasi }}</option>  
+                                    @endforeach
+                                </select>
+                            </div>
+                       
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
                 </div>
             </div>
         </div>

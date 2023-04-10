@@ -17,7 +17,8 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="/"><b>Ekinerja</b><br> BBLK Palembang</a>
+    <img src="{{ asset('images/logo.png') }}" width="100" height="130"><br>
+    <a href="/"><b>E-Kinerja</b></a>
   </div>
   <!-- /.login-logo -->
   <div class="card">
@@ -95,7 +96,7 @@
       <p class="mb-1">
         <a href="/">Jika tidak bisa login, silahkan hubungi IT</a>
       </p>
-  
+
     </div>
     <!-- /.login-card-body -->
   </div>

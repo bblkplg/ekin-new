@@ -30,16 +30,16 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-success">
                         <div class="inner">
                             <h4>Periode</h4>
-                            <p>{{ $periode->bulan }} - {{ $periode->tahun }}</p>
+                            {{-- <p>{{ $periode->bulan }} - {{ $periode->tahun }}</p> --}}
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-warning">
                         <div class="inner">
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-danger">
                         <div class="inner">
@@ -57,29 +57,39 @@
                         </div>
                     </div>
                 </div>
-                    
-
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <form>
-                                <table>
-                                    <tr>
-                                        <td> 
+                                <form class="forms-sample" action="{{route('kegiatan.store')}}" method="POST">
+                                  @csrf
+                                    <div class="form-row">
+                                        <div class="col-md-4 mb-3">
                                             <select class="form-control" name="tugas" width='100'>
                                                 @foreach ($target as $i)
                                                     <option value="{{ $i->tugas }}">{{ $i->tugas }}</option>
                                                 @endforeach
                                             </select>
-                                        </td>
-                                        <td><input type="text" class="form-control" name="indikator" placeholder="DO/Uraian Kinerja"></td>
-                                        <td><input type="number" class="form-control" name="target" placeholder="Tanggal"></td>
-                                        <td><input type="number" class="form-control" name="target" placeholder="Order"></td>
-                                        <td><input type="number" class="form-control" name="persentase"  placeholder="Jumlah"></td>
-                                    </tr>
-                                </table>
-                            </form></h3>
+                                        </div>
+                                        <div class="col-md-3 mb-6">
+                                            <input type="text" class="form-control" name="uraian" placeholder="DO/Uraian Kinerja">
+                                        </div>
+                                        <div class="col-sm-1 ">
+
+                                            <input type="number" class="form-control" name="tanggal" placeholder="Tanggal">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <input type="number" class="form-control" name="noorder" placeholder="Order">
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <input type="number" class="form-control" name="mulai"  placeholder="Jumlah">
+                                        </div>
+                                        <div class="col-sm-1">
+                                                <button type="submit" class="btn btn-primary me-2">Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                             </h3>
                         </div>
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
@@ -89,15 +99,28 @@
                                         <td>Tugas</td>
                                         <td>Uraian</td>
                                         <td>No Order</td>
+                                        <td>Jumlah</td>
+                                        <td>Persetujuan</td>
+                                        <td style="width:12%">Opsi</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($all as $d)
                                     <tr>
-                                        <td>{{ $d->tanggal }}</td>
-                                        <td>{{ $d->tugas }}</td>
-                                        <td>{{ $d->uraian }}</td>
-                                        <td>{{ $d->noorder }}</td>
+                                        <td>{{ $d->tanggal ?? '-' }}</td>
+                                        <td>{{ $d->tugas ?? '-' }}</td>
+                                        <td>{{ $d->uraian ?? '-' }}</td>
+                                        <td>{{ $d->noorder ?? '-' }}</td>
+                                        <td>{{ $d->mulai ?? '-' }}</td>
+                                        <td>{{ $d->kepala_instalasi ?? '-' }}</td>
+                                    <td>
+                                            <form action="{{ route('kegiatan.destroy', $d->IdCatKegiatan) }}" method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <a href="{{ route('kegiatan.edit',[$d->IdCatKegiatan]) }}" class="btn btn-warning btn-sm">Edit</a>
+                                                <button class="btn btn-danger btn-sm">Hapus</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                     @endforeach
                                 </tbody>

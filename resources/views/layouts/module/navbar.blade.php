@@ -47,7 +47,7 @@
           <option value="Desember">Desember</option>
         </select>
         @endif
-       
+
 
 
         <label for="inlineFormPassword" class="m-2">Tahun</label>
@@ -71,7 +71,7 @@
           @endfor
         </select>
         @endif
-       
+
         <button type="submit" class="btn btn-primary m-2">Submit</button>
       </form>
     </div>
@@ -83,7 +83,7 @@
       <!-- Navbar Search -->
       <li class="nav-item">
         <a href="{{ route('logout') }}" class="btn btn-danger">Logout</a>
-       
+
       </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">

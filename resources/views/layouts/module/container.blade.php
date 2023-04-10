@@ -51,7 +51,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('kegiatan')}}" class="nav-link {{ Request::routeIs('kegiatan') ? 'active' : '' }}">
+            <a href="{{ route('kegiatan.index')}}" class="nav-link {{ Request::routeIs('kegiatan') ? 'active' : '' }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Kegiatan

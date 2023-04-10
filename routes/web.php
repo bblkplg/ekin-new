@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'LoginController@index')->middleware('guest')->name('login');
 Route::post('/dologin', 'LoginController@authenticate');
-Route::get('logout', 'LoginController@logout')->name('logout'); 
+Route::get('logout', 'LoginController@logout')->name('logout');
 
 Route::get('/dashboard', 'LoginController@dashboard')->name('dashboard');
 Route::get('/data-pegawai', 'DataPegawaiController@index')->name('data-pegawai');
@@ -37,8 +37,21 @@ Route::get('/target', 'TargetController@index')->name('target');
 Route::get('/target-create', 'TargetController@create')->name('target.create');
 Route::get('/target-destroy', 'TargetController@destroy')->name('target.destroy');
 Route::get('/target-edit', 'TargetController@edit')->name('target.edit');
-Route::post('/target-update', 'TargetController@update')->name('target.update');
+Route::put('/target-update', 'TargetController@update')->name('target.update');
+Route::post('/target-store', 'TargetController@store')->name('target.store');
 
-Route::get('/kegiatan', 'KegiatanController@index')->name('kegiatan');
+// Route::get('/kegiatan', 'KegiatanController@index')->name('kegiatan');
+// Route::get('/kegiatan-create', 'KegiatanController@store')->name('kegiatan.create');
+// Route::get('/kegiatan-edit', 'KegiatanController@edit')->name('kegiatan.edit');
+// Route::post('/kegiatan-update', 'KegiatanController@update')->name('kegiatan.update');
+// Route::put('/kegiatan-update/{kegiatan}', 'KegiatanController@update')->name('kegiatan.update');
+
+Route::resource('kegiatan','KegiatanController');
+
+// Route::resource('target','TargetController');
+
+
+
+
 Route::get('/hasil', 'HasilController@index')->name('hasil');
 Route::post('/periode', 'LoginController@periode')->name('periode');

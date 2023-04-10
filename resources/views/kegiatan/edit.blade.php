@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Data Target</h1>
+                    <h1>Data Kegiatan</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
-                        <li class="breadcrumb-item active">Data Target</li>
+                        <li class="breadcrumb-item active">Data Kegiatan</li>
                     </ol>
                 </div>
             </div>
@@ -28,44 +28,52 @@
                             <h3 class="card-title">Edit Data Target</h3>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('target.update',['nama' => $target->nama,'bulan' => $target->bulan, 'tugas' => $target->tugas ]) }}" method="post" enctype="multipart/form-data" >
+
+                            <form action="{{ route('kegiatan.update', $kegiatan->IdCatKegiatan) }}" method="post" enctype="multipart/form-data" >
+                                @method('put')
                                 @csrf
-                                @method('PUT')
 
                                 <div class="form-group">
                                     <label for="nama">Nama</label>
-                                    <input type="text" name="nama" class="form-control" value="{{ $target->nama }}" required>
+                                    <input type="text" name="nama" class="form-control" value="{{ $kegiatan->nama }}" required>
                                     <p class="text-danger">{{ $errors->first('nama') }}</p>
                                 </div>
 
+
                                 <div class="form-group">
-                                    <label for="instalasi">Instalasi</label>
-                                    <input type="text" name="instalasi" class="form-control" value="{{ $target->instalasi }}" required>
-                                    <p class="text-danger">{{ $errors->first('instalasi') }}</p>
+                                    <label for="tanggal">tanggal</label>
+                                    <input type="text" name="tanggal" class="form-control" value="{{ $kegiatan->tanggal }}" required>
+                                    <p class="text-danger">{{ $errors->first('tanggal') }}</p>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="bulan">Tahun</label>
-                                    <input type="text" name="bulan" class="form-control" value="{{ $target->bulan }}" required>
+                                    <label for="bulan">Bulan</label>
+                                    <input type="text" name="bulan" class="form-control" value="{{ $kegiatan->bulan }}" required>
                                     <p class="text-danger">{{ $errors->first('bulan') }}</p>
                                 </div>
 
                                 <div class="form-group">
+                                    <label for="tahun">Tahun</label>
+                                    <input type="text" name="tahun" class="form-control" value="{{ $kegiatan->tahun }}" required>
+                                    <p class="text-danger">{{ $errors->first('tahun') }}</p>
+                                </div>
+
+                                <div class="form-group">
                                     <label for="tugas">Tugas</label>
-                                    <input type="text" name="tugas" class="form-control" value="{{ $target->tugas }}" required>
+                                    <input type="text" name="tugas" class="form-control" value="{{ $kegiatan->tugas }}" required>
                                     <p class="text-danger">{{ $errors->first('tugas') }}</p>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="target">Target</label>
-                                    <input type="text" name="target" class="form-control" value="{{ $target->target }}" required>
-                                    <p class="text-danger">{{ $errors->first('target') }}</p>
+                                    <label for="uraian">uraian</label>
+                                    <input type="text" name="uraian" class="form-control" value="{{ $kegiatan->uraian }}" required>
+                                    <p class="text-danger">{{ $errors->first('uraian') }}</p>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="persentase">Persentase</label>
-                                    <input type="text" name="persentase" class="form-control" value="{{ $target->persentase }}" required>
-                                    <p class="text-danger">{{ $errors->first('persentase') }}</p>
+                                    <label for="noorder">noorder</label>
+                                    <input type="text" name="noorder" class="form-control" value="{{ $kegiatan->noorder }}">
+                                    <p class="text-danger">{{ $errors->first('noorder') }}</p>
                                 </div>
 
                                 <div class="form-group">

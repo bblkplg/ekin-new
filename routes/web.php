@@ -55,3 +55,5 @@ Route::resource('kegiatan','KegiatanController');
 Route::get('/hasil', 'HasilController@index')->name('hasil');
 Route::get('/print-hasil', 'HasilController@printPDF')->name('print');
 Route::post('/periode', 'LoginController@periode')->name('periode');
+
+Route::get('/hasil-pdf', 'HasilController@pdf')->name('hasil-pdf');

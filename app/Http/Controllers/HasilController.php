@@ -9,6 +9,7 @@ use App\Kualitas;
 use App\Perilaku;
 use App\DataPegawai;
 use Auth;
+use PDF;
 
 class HasilController extends Controller
 {
@@ -17,6 +18,11 @@ class HasilController extends Controller
         $data['periode'] = json_decode(request()->cookie('ekin-periode'));
         $pegawai = DataPegawai::where('api_id',Auth::user()->api_id)->first();
         $periode = json_decode(request()->cookie('ekin-periode'));
+
+        
+        if(!isset($periode)){
+            return redirect(route('dashboard'))->with(['failed' => 'Silahkan pilih periode terlebih dahulu']);
+        }
 
         // $year = date('Y');
         // $month = date('m',strtotime("-1 month"));
@@ -39,5 +45,21 @@ class HasilController extends Controller
         $data['kegiatan'] = Kegiatan::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->where('tugas', 'Like', '%tambah%')->get();
 
         return view('hasil.print', $data);
+    }
+
+    public function pdf()
+    {
+        $data['periode'] = json_decode(request()->cookie('ekin-periode'));
+        $pegawai = DataPegawai::where('api_id',Auth::user()->api_id)->first();
+        $periode = json_decode(request()->cookie('ekin-periode'));
+
+        $data['all'] = Hasil::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->get();
+        $data['kualitas'] = Kualitas::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->get();
+        $data['perilaku'] = Perilaku::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->get();
+        $data['kegiatan'] = Kegiatan::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->where('tugas', 'Like', '%tambah%')->get();
+
+        $pdf = PDF::loadView('hasil.pdf');
+
+        return $pdf->stream();
     }
 }

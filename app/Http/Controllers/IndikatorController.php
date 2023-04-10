@@ -34,17 +34,17 @@ class IndikatorController extends Controller
             'persentase' => 'required'
         ]);
 
-   
+
         $target = Target::create([
             'nama' => $request->nama,
             'instalasi' => $request->instalasi,
             'bulan' => $request->bulan,
             'tugas' => $request->tugas,
-            'target' => $rquest->target, 
+            'target' => $rquest->target,
             'persentase' => $request->persentase
         ]);
         return redirect(route('target'))->with(['success' => 'Target Baru Ditambahkan']);
-    
+
     }
 
     public function edit(Request $request)
@@ -77,7 +77,7 @@ class IndikatorController extends Controller
             'instalasi' => $request->instalasi,
             'bulan' => $request->bulan,
             'tugas' => $request->tugas,
-            'target' => $rquest->target, 
+            'target' => $rquest->target,
             'persentase' => $request->persentase
         ]);
         return redirect(route('target'))->with(['success' => 'Data Target Diperbaharui']);

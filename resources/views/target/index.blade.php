@@ -35,7 +35,7 @@
                     <div class="small-box bg-success">
                         <div class="inner">
                             <h4>Periode Target</h4>
-                            {{-- <p>{{ $periode->bulan }} - {{ $periode->tahun }}</p> --}}
+                            <p>{{ $periode->bulan }} - {{ $periode->tahun }}</p>
                         </div>
                     </div>
                 </div>
@@ -49,6 +49,16 @@
                     </div>
                 </div>
 
+                @if (Auth::user()->atasan2 == " ")
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h4>Atasan 2</h4>
+                            <p>{{'-'}}</p>
+                        </div>
+                    </div>
+                </div>
+                @else
                 <div class="col-lg-3 col-6">
                     <div class="small-box bg-danger">
                         <div class="inner">
@@ -57,6 +67,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
 
 
                 <div class="col-12">

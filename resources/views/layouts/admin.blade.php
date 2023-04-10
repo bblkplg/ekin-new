@@ -120,6 +120,15 @@
 
 <script>
   $(function () {
+    $('#example').DataTable({
+      "paging": false,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": false,
+      "autoWidth": false,
+      "responsive": true,
+    });
     $("#example1").DataTable({
       "lengthMenu": [ [25, 50, 75, -1], [25, 50, 75, "All"] ],
       "ordering": true,

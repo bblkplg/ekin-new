@@ -47,10 +47,10 @@ Route::post('/target-store', 'TargetController@store')->name('target.store');
 
 Route::resource('kegiatan','KegiatanController');
 
-// Route::resource('target','TargetController');
 
 
 
 
 Route::get('/hasil', 'HasilController@index')->name('hasil');
+Route::get('/print-hasil', 'HasilController@printPDF')->name('print');
 Route::post('/periode', 'LoginController@periode')->name('periode');

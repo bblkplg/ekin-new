@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Hasil;
+use App\Kegiatan;
+use App\Kualitas;
+use App\Perilaku;
 use App\DataPegawai;
 use Auth;
 
@@ -11,14 +14,30 @@ class HasilController extends Controller
 {
     public function index()
     {
-        $month = date('m',strtotime("-1 month"));
-        $bulan = new Hasil();
-        $b = $bulan->bulan($month);
-
+        $data['periode'] = json_decode(request()->cookie('ekin-periode'));
         $pegawai = DataPegawai::where('api_id',Auth::user()->api_id)->first();
+        $periode = json_decode(request()->cookie('ekin-periode'));
 
-        $year = date('Y');
-        $data['all'] = Hasil::where('bulan',$bulan->bulan($month))->where('tahun',$year)->where('nama',$pegawai->nama)->get();
+        // $year = date('Y');
+        // $month = date('m',strtotime("-1 month"));
+        $bulan = new Hasil();
+        $data['all'] = Hasil::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->get();
+        $data['kualitas'] = Kualitas::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->get();
+        $data['perilaku'] = Perilaku::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->get();
+        $data['kegiatan'] = Kegiatan::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->where('tugas', 'Like', '%tambah%')->get();
+
         return view('hasil.index', $data);
+    }
+    public function printPDF(){
+        $data['periode'] = json_decode(request()->cookie('ekin-periode'));
+        $pegawai = DataPegawai::where('api_id',Auth::user()->api_id)->first();
+        $periode = json_decode(request()->cookie('ekin-periode'));
+
+        $data['all'] = Hasil::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->get();
+        $data['kualitas'] = Kualitas::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->get();
+        $data['perilaku'] = Perilaku::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->get();
+        $data['kegiatan'] = Kegiatan::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->where('tugas', 'Like', '%tambah%')->get();
+
+        return view('hasil.print', $data);
     }
 }

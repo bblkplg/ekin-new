@@ -33,24 +33,27 @@ class TargetController extends Controller
 
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'nama' => 'required',
-            'instalasi' => 'required',
-            'bulan' => 'required',
-            'tugas' => 'required',
-            'target' => 'required',
-            'persentase' => 'required'
-        ]);
+        // $this->validate($request, [
+        //     'nama' => 'required',
+        //     'instalasi' => 'required',
+        //     'bulan' => 'required',
+        //     'tugas' => 'required',
+        //     'target' => 'required',
+        //     'persentase' => 'required'
+        // ]);
 
+        $pegawai = DataPegawai::where('api_id',Auth::user()->api_id)->first();
+        $periode = json_decode(request()->cookie('ekin-periode'));
 
         $target = Target::create([
-            'nama' => $request->nama,
-            'instalasi' => $request->instalasi,
-            'bulan' => $request->bulan,
+            'nama' => $pegawai->nama,
+            'instalasi' => $pegawai->instalasi,
+            'bulan' => $periode->bulan,
             'tugas' => $request->tugas,
             'target' => $request->target,
             'persentase' => $request->persentase
         ]);
+
         return redirect(route('target'))->with(['success' => 'Target Baru Ditambahkan']);
 
     }
@@ -64,7 +67,7 @@ class TargetController extends Controller
         return view('target.edit', compact('target'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Target $target)
     {
         $nama = $request->get('nama');
         $bulan= $request->get('bulan');

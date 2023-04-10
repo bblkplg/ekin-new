@@ -28,10 +28,10 @@
                             <h3 class="card-title">Edit Data Target</h3>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('target.update', $target->id) }}" method="post" enctype="multipart/form-data" >
+                            <form action="{{ route('target.update',['nama' => $target->nama,'bulan' => $target->bulan, 'tugas' => $target->tugas ]) }}" method="post" enctype="multipart/form-data" >
                                 @csrf
                                 @method('PUT')
-                             
+
                                 <div class="form-group">
                                     <label for="nama">Nama</label>
                                     <input type="text" name="nama" class="form-control" value="{{ $target->nama }}" required>
@@ -67,7 +67,7 @@
                                     <input type="text" name="persentase" class="form-control" value="{{ $target->persentase }}" required>
                                     <p class="text-danger">{{ $errors->first('persentase') }}</p>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <button class="btn btn-primary btn-sm">Update</button>
                                 </div>

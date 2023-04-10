@@ -8,4 +8,6 @@ class Target extends Model
 {
     protected $table = 'target';
     protected $guarded = [];
+    public $timestamps = false;
+
 }

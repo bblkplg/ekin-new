@@ -36,7 +36,8 @@ Route::get('/target', 'TargetController@index')->name('target');
 Route::get('/target-create', 'TargetController@create')->name('target.create');
 Route::get('/target-destroy', 'TargetController@destroy')->name('target.destroy');
 Route::get('/target-edit', 'TargetController@edit')->name('target.edit');
-Route::post('/target-update', 'TargetController@update')->name('target.update');
+Route::put('/target-update', 'TargetController@update')->name('target.update');
+Route::post('/target-store', 'TargetController@store')->name('target.store');
 
 // Route::get('/kegiatan', 'KegiatanController@index')->name('kegiatan');
 // Route::get('/kegiatan-create', 'KegiatanController@store')->name('kegiatan.create');
@@ -45,6 +46,9 @@ Route::post('/target-update', 'TargetController@update')->name('target.update');
 // Route::put('/kegiatan-update/{kegiatan}', 'KegiatanController@update')->name('kegiatan.update');
 
 Route::resource('kegiatan','KegiatanController');
+
+// Route::resource('target','TargetController');
+
 
 
 

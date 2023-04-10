@@ -63,26 +63,29 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <form>
-                                    <table>
-                                        <tr>
-                                            <td>
-                                                <select class="form-control" name="tugas" width='100'>
-                                                    @foreach ($indikator as $i)
-                                                        <option value="{{ $i->indikator }}">{{ $i->indikator }}</option>
-                                                    @endforeach
-                                                </select>
-                                            </td>
-                                            <td><input type="number" class="form-control" name="target" placeholder="Target"></td>
-                                            <td><input type="number" class="form-control" name="persentase"  placeholder="Bobot"></td>
-                                        </tr>
-                                    </table>
-                                </form>
-                            </h3>
-                            <div class="float-right">
-                                <a href="{{ route('target.create') }}" class="btn btn-primary btn-sm">Tambah</a>
+                                <form class="forms-sample" action="{{route('target.store')}}" method="POST">
+                                    @csrf
+                                    <div class="form-row">
+                                         <div class="col-md-4 mb-6">
+                                            <select class="form-control" name="tugas" width='100'>
+                                                @foreach ($indikator as $i)
+                                                    <option value="{{ $i->indikator }}">{{ $i->indikator }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4 mb-6">
+                                            <input type="number" class="form-control" name="target" placeholder="Target">
+                                        </div>
+                                        <div class="col-md-3 mb-6">
+                                            <input type="number" class="form-control" name="persentase"  placeholder="Bobot">
+                                        </div>
+                                        <div class="col-sm-1">
+                                                <button type="submit" class="btn btn-primary me-2">Submit</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </h3>
                             </div>
-                        </div>
                         <div class="card-body">
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>

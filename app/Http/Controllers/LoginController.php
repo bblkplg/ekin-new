@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\DataPegawai;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Cookie;
 
 class LoginController extends Controller
 {
@@ -45,6 +46,8 @@ class LoginController extends Controller
 
     public function logout()
     {
+        $cookie = \Cookie::forget('ekin-periode');
+        Cookie::queue(Cookie::forget('ekin-periode'));
         auth()->logout();
         return redirect(route('login'));
     }

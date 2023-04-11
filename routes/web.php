@@ -27,6 +27,8 @@ Route::get('/dashboard', 'LoginController@dashboard')->name('dashboard');
 Route::get('/data-pegawai', 'DataPegawaiController@index')->name('data-pegawai');
 
 Route::resource('indikator', 'IndikatorController');
+Route::resource('target', 'TargetController');
+
 // Route::get('/indikator', 'IndikatorController@index')->name('indikator.index');
 // Route::post('/indikator-store', 'IndikatorController@store')->name('indikator.store');
 // Route::get('/indikator-destroy', 'IndikatorController@destroy')->name('indikator.destroy');

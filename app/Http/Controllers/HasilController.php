@@ -19,7 +19,7 @@ class HasilController extends Controller
         $pegawai = DataPegawai::where('api_id',Auth::user()->api_id)->first();
         $periode = json_decode(request()->cookie('ekin-periode'));
 
-        
+
         if(!isset($periode)){
             return redirect(route('dashboard'))->with(['failed' => 'Silahkan pilih periode terlebih dahulu']);
         }
@@ -58,7 +58,10 @@ class HasilController extends Controller
         $data['perilaku'] = Perilaku::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->get();
         $data['kegiatan'] = Kegiatan::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->where('tugas', 'Like', '%tambah%')->get();
 
-        $pdf = PDF::loadView('hasil.pdf');
+
+
+
+        $pdf = PDF::loadView('hasil.pdf', ['all' => $data['all'], 'kualitas' => $data['kualitas'], 'perilaku' => $data['perilaku'], 'kegiatan' => $data['kegiatan']]);
 
         return $pdf->stream();
     }

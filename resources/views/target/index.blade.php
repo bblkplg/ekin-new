@@ -116,13 +116,14 @@
                                     <tr>
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $d->tugas }}</td>
-                                        <td>{{ $d->target }}</td>
+                                        @dd($all);
+                                        <td>{{ $d->Idtarget}}</td>
                                         <td>{{ $d->persentase }}</td>
                                         <td>
                                             <form action="{{ route('target.destroy', $d->nama) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <a href="{{ route('target.edit',['nama' => $d->nama,'bulan' => $d->bulan, 'tugas' => $d->tugas ]) }}" class="btn btn-warning btn-sm">Edit</a>
+                                                <a href="{{ route('target.edit',[$d->Idtarget]) }}" class="btn btn-warning btn-sm">Edit</a>
                                                 <button class="btn btn-danger btn-sm">Hapus</button>
                                             </form>
 

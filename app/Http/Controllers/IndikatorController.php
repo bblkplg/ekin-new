@@ -28,25 +28,11 @@ class IndikatorController extends Controller
             'instalasi' => 'required'
         ]);
 
-<<<<<<< HEAD
-
-        $target = Target::create([
-            'nama' => $request->nama,
-            'instalasi' => $request->instalasi,
-            'bulan' => $request->bulan,
-            'tugas' => $request->tugas,
-            'target' => $rquest->target,
-            'persentase' => $request->persentase
-        ]);
-        return redirect(route('target'))->with(['success' => 'Target Baru Ditambahkan']);
-
-=======
         $indikator = Indikator::create([
             'indikator' => $request->indikator,
             'instalasi' => $request->instalasi
         ]);
         return redirect(route('indikator.index'))->with(['success' => 'Indikator Baru Ditambahkan']);
->>>>>>> 5534ab9bacddd3107621b30b2c2777e87889a743
     }
 
     public function edit(Indikator $indikator)
@@ -69,19 +55,9 @@ class IndikatorController extends Controller
 
         $indikator = Indikator::where('idindikator',$indikator->idindikator)->first();
 
-<<<<<<< HEAD
-        $target->update([
-            'nama' => $request->nama,
-            'instalasi' => $request->instalasi,
-            'bulan' => $request->bulan,
-            'tugas' => $request->tugas,
-            'target' => $rquest->target,
-            'persentase' => $request->persentase
-=======
         $indikator->update([
             'indikator' => $request->indikator,
             'instalasi' => $request->instalasi
->>>>>>> 5534ab9bacddd3107621b30b2c2777e87889a743
         ]);
         return redirect(route('indikator.index'))->with(['success' => 'Data Indikator Diperbaharui']);
     }

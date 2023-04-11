@@ -26,11 +26,11 @@ class LoginController extends Controller
             'password' => 'required|string'
         ]);
 
-    
+
         $user = DataPegawai::where('nama', request()->nama)->where('password', request()->password)->first();
         if($user) {
             Auth::login($user);
-          
+
             return redirect(route('dashboard'));
         }
 
@@ -40,13 +40,13 @@ class LoginController extends Controller
     public function dashboard()
     {
         $data['periode'] = json_decode(request()->cookie('ekin-periode'));
-        
+
         return view('administrator.index');
     }
 
     public function logout()
     {
-        $cookie = \Cookie::forget('ekin-periode');
+        $cookie = Cookie::forget('ekin-periode');
         Cookie::queue(Cookie::forget('ekin-periode'));
         auth()->logout();
         return redirect(route('login'));
@@ -55,12 +55,12 @@ class LoginController extends Controller
     public function periode(Request $request)
     {
         $this->validate($request, [
-            'bulan' => 'required', 
-            'tahun' => 'required' 
+            'bulan' => 'required',
+            'tahun' => 'required'
         ]);
 
-        $periode = json_decode($request->cookie('ekin-periode'), true); 
-        
+        $periode = json_decode($request->cookie('ekin-periode'), true);
+
         $periode = [
             'bulan' => $request->bulan,
             'tahun' => $request->tahun

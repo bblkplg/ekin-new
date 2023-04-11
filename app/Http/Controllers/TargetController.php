@@ -16,18 +16,19 @@ class TargetController extends Controller
         $data['periode'] = json_decode(request()->cookie('ekin-periode'));
         // $periode = json_decode(request()->cookie('ekin-periode'));
 
-        
-        if(!isset($periode)){
-            return redirect(route('dashboard'))->with(['failed' => 'Silahkan pilih periode terlebih dahulu']);
-        }
+
+        // if(!isset($periode)){
+        //     return redirect(route('dashboard'))->with(['failed' => 'Silahkan pilih periode terlebih dahulu']);
+        // }
 
         $pegawai = DataPegawai::where('api_id',Auth::user()->api_id)->first();
 
-        $data['all'] = Target::where('nama',$pegawai->nama)->get();
+        $data['all'] = Target::where('nama', $pegawai->nama)->get();
         $data['atasan1'] = $pegawai->atasan1;
         $data['atasan2'] = $pegawai->atasan2;
-
+dd( $data['all']);
         $data['indikator'] = Indikator::where('instalasi',$pegawai->instalasi)->get();
+
         return view('target.index', $data);
     }
 
@@ -63,12 +64,12 @@ class TargetController extends Controller
 
     }
 
-    public function edit(Request $request)
+    public function edit(Target $target)
     {
-        $nama = $request->get('nama');
-        $bulan= $request->get('bulan');
-        $tugas = $request->get('tugas');
-        $target = Target::where('nama',$nama)->where('bulan',$bulan)->where('tugas',$tugas)->first();
+        // $nama = $request->get('nama');
+        // $bulan= $request->get('bulan');
+        // $tugas = $request->get('tugas');
+        // $target = Target::where('nama',$nama)->where('bulan',$bulan)->where('tugas',$tugas)->first();
         return view('target.edit', compact('target'));
     }
 

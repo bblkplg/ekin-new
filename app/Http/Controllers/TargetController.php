@@ -14,12 +14,11 @@ class TargetController extends Controller
     {
 
         $data['periode'] = json_decode(request()->cookie('ekin-periode'));
-        // $periode = json_decode(request()->cookie('ekin-periode'));
+        $periode = json_decode(request()->cookie('ekin-periode'));
 
-
-        // if(!isset($periode)){
-        //     return redirect(route('dashboard'))->with(['failed' => 'Silahkan pilih periode terlebih dahulu']);
-        // }
+        if(!isset($periode)){
+            return redirect(route('dashboard'))->with(['failed' => 'Silahkan pilih periode terlebih dahulu']);
+        }
 
         $pegawai = DataPegawai::where('api_id',Auth::user()->api_id)->first();
 

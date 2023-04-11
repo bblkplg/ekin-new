@@ -19,7 +19,7 @@ class KegiatanController extends Controller
             return redirect(route('dashboard'))->with(['failed' => 'Silahkan pilih periode terlebih dahulu']);
         }
         $pegawai = DataPegawai::where('api_id',Auth::user()->api_id)->first();
-        $data['target'] = Kegiatan::where('nama',$pegawai->nama)->get();
+        $data['target'] =  Target::where('nama', $pegawai->nama)->where('bulan', $periode->tahun)->get();
 
         $data['all'] = Kegiatan::where('tahun',$periode->tahun)->where('nama', $pegawai->nama)->where('bulan', $periode->bulan)->orderBy('tanggal','ASC')->get();
         $data['validasi'] = Kegiatan::where('tahun',$periode->tahun)->where('nama', $pegawai->nama)->where('bulan', $periode->bulan)->get();

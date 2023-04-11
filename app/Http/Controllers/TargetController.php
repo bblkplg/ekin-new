@@ -22,7 +22,7 @@ class TargetController extends Controller
 
         $pegawai = DataPegawai::where('api_id',Auth::user()->api_id)->first();
 
-        $data['all'] = Target::where('nama', $pegawai->nama)->get();
+        $data['all'] = Target::where('nama', $pegawai->nama)->where('bulan', $periode->tahun)->get();
         $data['atasan1'] = $pegawai->atasan1;
         $data['atasan2'] = $pegawai->atasan2;
 

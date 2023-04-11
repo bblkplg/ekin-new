@@ -43,7 +43,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('target')}}" class="nav-link {{ Request::routeIs('target') ? 'active' : '' }}">
+            <a href="{{ route('target.index')}}" class="nav-link {{ Request::routeIs('target') ? 'active' : '' }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Target

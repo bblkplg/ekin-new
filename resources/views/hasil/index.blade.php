@@ -162,7 +162,13 @@
 
                                 </td>
 
-                                @php $total_nilai = $totalperilaku  + $totalkualitas  +  $total + $totaltambahan ; @endphp
+                                @php
+                                if ($total != NULL){
+                                $total_nilai = $totalperilaku  + $totalkualitas  +  $total + $totaltambahan;
+                             } else{
+                                 echo('0.00');
+                            }
+                                @endphp
                                 <td style="background-color: #1e5896; " align="center">{{$total_nilai ?? '0.00', 2 }}</td>
 
                             <tr>

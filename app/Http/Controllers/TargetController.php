@@ -26,7 +26,7 @@ class TargetController extends Controller
         $data['all'] = Target::where('nama', $pegawai->nama)->get();
         $data['atasan1'] = $pegawai->atasan1;
         $data['atasan2'] = $pegawai->atasan2;
-dd( $data['all']);
+
         $data['indikator'] = Indikator::where('instalasi',$pegawai->instalasi)->get();
 
         return view('target.index', $data);
@@ -39,6 +39,10 @@ dd( $data['all']);
 
     public function store(Request $request)
     {
+
+        $pegawai = DataPegawai::where('api_id',Auth::user()->api_id)->first();
+        $periode = json_decode(request()->cookie('ekin-periode'));
+
         // $this->validate($request, [
         //     'nama' => 'required',
         //     'instalasi' => 'required',
@@ -48,8 +52,6 @@ dd( $data['all']);
         //     'persentase' => 'required'
         // ]);
 
-        $pegawai = DataPegawai::where('api_id',Auth::user()->api_id)->first();
-        $periode = json_decode(request()->cookie('ekin-periode'));
 
         $target = Target::create([
             'nama' => $pegawai->nama,
@@ -57,27 +59,24 @@ dd( $data['all']);
             'bulan' => $periode->bulan,
             'tugas' => $request->tugas,
             'target' => $request->target,
-            'persentase' => $request->persentase
+            'persentase' => $request->persentase,
+            'kepala_bblk' => 'Belum Disetujui',
+            'kepala_instalasi' => 'Belum Disetujui',
         ]);
 
-        return redirect(route('target'))->with(['success' => 'Target Baru Ditambahkan']);
+        return redirect(route('target.index'))->with(['success' => 'Target Baru Ditambahkan']);
 
     }
 
     public function edit(Target $target)
     {
-        // $nama = $request->get('nama');
-        // $bulan= $request->get('bulan');
-        // $tugas = $request->get('tugas');
-        // $target = Target::where('nama',$nama)->where('bulan',$bulan)->where('tugas',$tugas)->first();
+
         return view('target.edit', compact('target'));
     }
 
     public function update(Request $request, Target $target)
     {
-        $nama = $request->get('nama');
-        $bulan= $request->get('bulan');
-        $tugas = $request->get('tugas');
+
         $this->validate($request, [
             'nama' => 'required',
             'instalasi' => 'required',
@@ -87,29 +86,22 @@ dd( $data['all']);
             'persentase' => 'required'
         ]);
 
-        $target = Target::where('nama',$nama)->where('bulan',$bulan)->where('tugas',$tugas)->first();
-
         $target->update([
             'nama' => $request->nama,
             'instalasi' => $request->instalasi,
             'bulan' => $request->bulan,
             'tugas' => $request->tugas,
             'target' => $request->target,
-            'persentase' => $request->persentase
+            'persentase' => $request->persentase,
+
         ]);
-        return redirect(route('target'))->with(['success' => 'Data Target Diperbaharui']);
+        return redirect(route('target.index'))->with(['success' => 'Data Target Diperbaharui']);
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request, Target $target)
     {
-        $nama = $request->get('nama');
-        $bulan= $request->get('bulan');
-        $tugas = $request->get('tugas');
-
-
-        $target = Target::where('nama',$nama)->where('bulan',$bulan)->where('tugas',$tugas)->first();
         $target->delete();
-        return redirect(route('target'))->with(['success' => 'Target Sudah Dihapus']);
+        return redirect(route('target.index'))->with(['success' => 'Target Sudah Dihapus']);
     }
 
 

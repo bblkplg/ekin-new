@@ -28,7 +28,7 @@
                             <h3 class="card-title">Edit Data Target</h3>
                         </div>
                         <div class="card-body">
-                            <form action="{{ route('target.update',['nama' => $target->nama,'bulan' => $target->bulan, 'tugas' => $target->tugas ]) }}" method="post" enctype="multipart/form-data" >
+                            <form action="{{ route('target.update',[$target->Id_Target]) }}" method="post" enctype="multipart/form-data" >
                                 @csrf
                                 @method('PUT')
 

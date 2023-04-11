@@ -8,7 +8,7 @@ class Target extends Model
 {
     protected $table = 'target';
     protected $primaryKey = 'Id_Target';
-    protected $fillable = ['nama','instalasi','bulan','tugas','target','persentase','kepala_bblk','kepala_instalasi'];
+    protected $guarded = [];
     public $timestamps = false;
 
 }

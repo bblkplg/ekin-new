@@ -28,6 +28,7 @@ Route::get('/data-pegawai', 'DataPegawaiController@index')->name('data-pegawai')
 
 Route::resource('indikator', 'IndikatorController');
 Route::resource('target', 'TargetController');
+Route::resource('kegiatan','KegiatanController');
 
 // Route::get('/indikator', 'IndikatorController@index')->name('indikator.index');
 // Route::post('/indikator-store', 'IndikatorController@store')->name('indikator.store');
@@ -35,12 +36,12 @@ Route::resource('target', 'TargetController');
 // Route::get('/indikator-edit', 'IndikatorController@edit')->name('indikator.edit');
 // Route::post('/indikator-update', 'IndikatorController@update')->name('indikator.update');
 
-Route::get('/target', 'TargetController@index')->name('target');
-Route::get('/target-create', 'TargetController@create')->name('target.create');
-Route::get('/target-destroy', 'TargetController@destroy')->name('target.destroy');
-Route::get('/target-edit', 'TargetController@edit')->name('target.edit');
-Route::put('/target-update', 'TargetController@update')->name('target.update');
-Route::post('/target-store', 'TargetController@store')->name('target.store');
+// Route::get('/target', 'TargetController@index')->name('target');
+// Route::get('/target-create', 'TargetController@create')->name('target.create');
+// Route::get('/target-destroy', 'TargetController@destroy')->name('target.destroy');
+// Route::get('/target-edit', 'TargetController@edit')->name('target.edit');
+// Route::put('/target-update', 'TargetController@update')->name('target.update');
+// Route::post('/target-store', 'TargetController@store')->name('target.store');
 
 // Route::get('/kegiatan', 'KegiatanController@index')->name('kegiatan');
 // Route::get('/kegiatan-create', 'KegiatanController@store')->name('kegiatan.create');
@@ -48,7 +49,6 @@ Route::post('/target-store', 'TargetController@store')->name('target.store');
 // Route::post('/kegiatan-update', 'KegiatanController@update')->name('kegiatan.update');
 // Route::put('/kegiatan-update/{kegiatan}', 'KegiatanController@update')->name('kegiatan.update');
 
-Route::resource('kegiatan','KegiatanController');
 
 
 

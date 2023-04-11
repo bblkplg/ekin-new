@@ -248,8 +248,16 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                                 @php $total_nilai = ($hasilinisiatif  + $hasilkeberadaan + $hasilkehandalan + $hasilkepatuhan + $hasilkerjasama + $hasilsikap); @endphp
-                                <h4 class="p-size" align="right" style="margin-right:30px; margin-top: 0"><b>Total Nilai Perilaku : {{$total_nilai }}</b></h4>
+                            @php
+                            if($total != NULL){
+
+                                $total_nilai = ($hasilinisiatif  + $hasilkeberadaan + $hasilkehandalan + $hasilkepatuhan + $hasilkerjasama + $hasilsikap);
+                            }else{
+
+                                echo('0.00');
+                            }
+                            @endphp
+                                <h4 class="p-size" align="right" style="margin-right:30px; margin-top: 0"><b>Total Nilai Perilaku : {{$total_nilai ?? '0.00' }}</b></h4>
                                 <h4 class="p-size"><b>D. Kegiatan Tambahan</b></h4>
                                 <table class="table" width="100%" style="border-collapse: collapse; border: 1px solid;">
                                         <thead>
@@ -283,7 +291,7 @@
                                             <tr>
 
                                                 <td id="tabel">{{ $key+1 }}.</td>
-                                                <td id="tabel">{{ 'Kegiatan Tamnbahan' }}</td>
+                                                <td id="tabel">{{ 'Kegiatan Tambahan' }}</td>
                                                 <td id="tabel">{{ $data->uraian }}</td>
                                                 <td id="tabel"></td>
                                             </tr>
@@ -291,13 +299,21 @@
 
                                         </tbody>
                                     </table>
-                                    <h4 class="p-size" align="right" style="margin-right:50px;"><b>Kegiatan Tambahan : {{$totalnilai }}</b></h4>
+                                    <h4 class="p-size" align="right" style="margin-right:50px;"><b>Kegiatan Tambahan : {{$totalnilai ?? '0.00'}}</b></h4>
                                     <?php $totalperilaku=0; ?>
                                     @foreach($perilaku as $data)
                                          <?php $totalperilaku += $data->jumlah ?>
                                     @endforeach
 
-                                    @php $total_nilai = $totalperilaku  + $totalkualitas  +  $total + $totaltambahan ; @endphp
+                                    @php
+                                    if($total != NULL){
+
+                                        $total_nilai = $totalperilaku  + $totalkualitas  +  $total + $totaltambahan;
+                                    }else{
+
+                                        echo('0.00');
+                                    }
+                                    @endphp
                                     <h4><b>Jumlah Total Capaian Kinerja :</b> <b class="total-size"> {{$total_nilai ?? '0.00', 2 }}</b></h4>
                                     @php $now = date_create()->format('d/m/Y'); @endphp
 

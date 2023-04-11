@@ -55,7 +55,7 @@
                                             }
                                             @endphp
                                          @endforeach
-                                            <h5><button type='button' class='{{$bandage}}'><i class='fa fa-info'> </i> {{$atasan_2}}</button></h5>
+                                            <h5><button type='button' class='{{$bandage ?? 'badge badge-pill badge-danger'}}'><i class='fa fa-info'> </i> {{$atasan_2 ?? 'Belum Disetujui'}}</button></h5>
                                             {{-- @include('staff.hasil.atasan1') --}}
                                 </div>
                                 @if (Auth::user()->atasan2 == '')

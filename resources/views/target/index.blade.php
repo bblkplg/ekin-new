@@ -19,7 +19,7 @@
         </div>
     </section>
 
-    <section class="content">
+    <section class="content-header">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-3 col-6">
@@ -125,8 +125,6 @@
                                                 <a href="{{ route('target.edit',[$d->Id_Target]) }}" class="btn btn-warning btn-sm">Edit</a>
                                                 <button class="btn btn-danger btn-sm">Hapus</button>
                                             </form>
-
-
                                         </td>
                                     </tr>
                                     @endforeach

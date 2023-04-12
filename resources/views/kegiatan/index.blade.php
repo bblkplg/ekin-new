@@ -27,6 +27,7 @@
                         <div class="inner">
                             <h4>{{ Auth::user()->nama }}</h4>
                             <p>{{ Auth::user()->jabatan }} - {{ Auth::user()->instalasi }}</p>
+                            <br>
                         </div>
                     </div>
                 </div>
@@ -36,6 +37,8 @@
                         <div class="inner">
                             <h4>Periode Target</h4>
                             <p>{{ $periode->bulan }} - {{ $periode->tahun }}</p>
+                            <br>
+
                         </div>
                     </div>
                 </div>
@@ -59,7 +62,7 @@
                             }
                             @endphp
                         @endforeach
-                            <h5><button type='button' class='{{$bandage ?? 'badge badge-pill badge-danger'}}'><i class='fa fa-info'> </i> {{$atasan_2 ?? 'Belum Disetujui'}}</button></h5>
+                            <button type='button' class='{{$bandage ?? 'badge badge-pill badge-danger'}}'><i class='fa fa-info'> </i> {{$atasan_2 ?? 'Belum Disetujui'}}</button>
                         </div>
                     </div>
                 </div>
@@ -70,6 +73,7 @@
                         <div class="inner">
                             <h4>Atasan 2</h4>
                             <p>{{'-'}}</p>
+                            <br>
                         </div>
                     </div>
                 </div>
@@ -79,6 +83,7 @@
                         <div class="inner">
                             <h4>Atasan 2</h4>
                             <p>{{ $atasan2 }}</p>
+                            <br>
                         </div>
                     </div>
                 </div>

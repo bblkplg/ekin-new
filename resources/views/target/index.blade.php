@@ -76,9 +76,10 @@
                             <h3 class="card-title">
                                 <form class="forms-sample" action="{{route('target.store')}}" method="POST">
                                     @csrf
-                                    <div class="form-row">
+                                    <div class="form-row col-12" >
                                          <div class="col-md-4 mb-6">
                                             <select class="form-control" name="tugas" width='100'>
+                                                <option selected disabled>Pilih Indikator Target</option>
                                                 @foreach ($indikator as $i)
                                                     <option value="{{ $i->indikator }}">{{ $i->indikator }}</option>
                                                 @endforeach
@@ -91,9 +92,8 @@
                                             <input type="number" class="form-control" name="persentase"  placeholder="Bobot">
                                         </div>
                                         <div class="col-sm-1">
-                                                <button type="submit" class="btn btn-primary me-2">Submit</button>
-                                            </form>
-                                        </div>
+                                            <button type="submit" class="btn btn-primary me-2">Submit</button>
+                                        </form>
                                     </div>
                                 </h3>
                             </div>

@@ -99,6 +99,7 @@
                                     <div class="form-row">
                                         <div class="col-md-4 mb-3">
                                             <select class="form-control" name="tugas" width='100'>
+                                                <option selected disabled>Pilih Target Kegiatan</option>
                                                 @foreach ($target as $i)
                                                     <option value="{{ $i->tugas }}">{{ $i->tugas }}</option>
                                                 @endforeach
@@ -107,7 +108,7 @@
                                         <div class="col-md-3 mb-6">
                                             <input type="text" class="form-control" name="uraian" placeholder="DO/Uraian Kinerja">
                                         </div>
-                                        <div class="col-sm-1 ">
+                                        <div class="col-sm-1">
 
                                             <input type="number" class="form-control" name="tanggal" placeholder="Tanggal">
                                         </div>

@@ -36,13 +36,11 @@
                             <div class="col-sm-4">
                                         <h5 class="text-white mb-3"><b>{{'Atasan 1'}} </b><br></h5>
                                         <h5 class="text-white mb-4">{{ Auth::user()->atasan1 }}</h5>
-                                        <h5 class="text-white mb-4"></h5>
-                                        <h5 class="text-white mb-4"></h5>
 
                             </div>
-                            @if (Auth::user()->atasan2 == '')
+                            @if (Auth::user()->atasan2 != '')
                             <div class="col-sm-4">
-                                <h4 class="card-title card-title-dash text-white mb-4">{{ 'Atasan 2' }}</h4>
+                                <h5 class="text-white mb-3"><b>{{'Atasan 2'}} </b><br></h5>
                                 <h5 class="text-white mb-4">{{ Auth::user()->atasan2 }}</h5>
 
                             </div>
@@ -63,7 +61,7 @@
                         <div class="card-header">
                             <h2 class="card-title"><b>Hasil Kinerja Pegawai</b></h2><br>
                             {{-- <a type="button" href="{{ url('print-hasil') }}" class="btn btn-primary btn-lg"><i class='fa fa-print'></i> Print Hasil</a> --}}
-                            <a type="button" href="{{ url('hasil-pdf') }}" class="btn btn-primary btn-lg"><i class='fa fa-print'></i> Cetak Hasil</a>
+                            <a type="button" href="{{ url('hasil-pdf') }}" class="btn btn-primary btn-lg" target="_blank"><i class='fa fa-print'></i> Cetak Hasil</a>
                         </div>
                         <div class="card-body">
                             <table id="example" class="table">

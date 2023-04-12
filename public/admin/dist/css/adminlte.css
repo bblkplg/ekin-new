@@ -10657,7 +10657,7 @@ a.text-dark:hover, a.text-dark:focus {
 .preloader {
   display: -ms-flexbox;
   display: flex;
-  background-color: #f4f6f9;
+  background-image: linear-gradient(to right, #00a2f9, #4f09da);
   height: 100vh;
   width: 100%;
   transition: height 200ms linear;

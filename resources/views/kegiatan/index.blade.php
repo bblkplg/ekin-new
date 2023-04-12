@@ -19,59 +19,72 @@
         </div>
     </section>
 
-    <section class="content">
-        <div class="container">
-            <div class="row flex-grow">
-                <div class="col-md-6 col-lg-12 grid-margin stretch-card">
-                    <div class="card bg-primary card-rounded">
-                        <div class="card-body pb-0">
-                            <h4 class="card-title card-title-dash text-white mb-4"></h4>
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <h5 class="text-white mb-3"><b>{{'Pegawai'}} </b><br></h5>
-                                    <h5 class="text-white mb-2">{{ Auth::user()->nama }} <br></h5>
-                                    <h5 class="text-white mb-2">{{ Auth::user()->jabatan }}<br/></h5>
-                                    <h5 class="text-white mb-2">{{ Auth::user()->instalasi }} <br></h5>
-                                    <p  style="color:rgb(0, 255, 123)"><b>{{$periode->bulan}}</b></p>
-                                    <h2  style="color:rgb(0, 255, 157)"><b>{{$periode->tahun}}</b></h2>
-                                </div>
-                                <div class="col-sm-4">
-                                            <h5 class="text-white mb-3"><b>{{'Atasan 1'}} </b><br></h5>
-                                            <h5 class="text-white mb-4">{{ Auth::user()->atasan1 }}</h5>
-                                            <h5 class="text-white mb-4"></h5>
-                                            <h5 class="text-white mb-4"></h5>
-
-                                            @foreach ($validasi as $datavalidasi)
-                                            @php
-                                            if ($datavalidasi->kepala_instalasi == 'Telah Disetujui') {
-                                                $bandage = 'badge badge-pill badge-success';
-                                                $atasan_2 = 'Disetujui';
-                                            } elseif ($datavalidasi->kepala_instalasi == 'Belum Disetujui') {
-                                                $bandage = 'badge badge-pill badge-danger';
-                                                $atasan_2 = 'Belum Disetujui';
-                                            } else {
-                                                $bandage = 'badge badge-pill badge-warning';
-                                                $atasan_2 = 'Menunggu Persetujuan';
-                                            }
-                                            @endphp
-                                         @endforeach
-                                            <h5><button type='button' class='{{$bandage ?? 'badge badge-pill badge-danger'}}'><i class='fa fa-info'> </i> {{$atasan_2 ?? 'Belum Disetujui'}}</button></h5>
-                                            {{-- @include('staff.hasil.atasan1') --}}
-                                </div>
-                                @if (Auth::user()->atasan2 == '')
-                                <div class="col-sm-4">
-                                    <h4 class="card-title card-title-dash text-white mb-4">{{ 'Atasan 2' }}</h4>
-                                    <h5 class="text-white mb-4">{{ Auth::user()->atasan2 }}</h5>
-                                    <h3><button type='button' class='' data-bs-toggle='modal' data-bs-target=''><i class='ti-info'></i>&nbsp;</button></h3>
-                                    {{-- @include('staff.hasil.atasan2') --}}
-                                </div>
-                                @endif
-                            </div>
-                            <hr>
-                            <p class="text-white mb-4">Informasi</p>
-                            </div>
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h4>{{ Auth::user()->nama }}</h4>
+                            <p>{{ Auth::user()->jabatan }} - {{ Auth::user()->instalasi }}</p>
                         </div>
                     </div>
+                </div>
+
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h4>Periode Target</h4>
+                            <p>{{ $periode->bulan }} - {{ $periode->tahun }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h4>Atasan 1</h4>
+                            <p>{{ $atasan1 }}</p>
+                            @foreach ($validasi as $datavalidasi)
+                            @php
+                            if ($datavalidasi->kepala_instalasi == 'Telah Disetujui') {
+                                $bandage = 'badge badge-pill badge-success';
+                                $atasan_2 = 'Disetujui';
+                            } elseif ($datavalidasi->kepala_instalasi == 'Belum Disetujui') {
+                                $bandage = 'badge badge-pill badge-danger';
+                                $atasan_2 = 'Belum Disetujui';
+                            } else {
+                                $bandage = 'badge badge-pill badge-warning';
+                                $atasan_2 = 'Menunggu Persetujuan';
+                            }
+                            @endphp
+                        @endforeach
+                            <h5><button type='button' class='{{$bandage ?? 'badge badge-pill badge-danger'}}'><i class='fa fa-info'> </i> {{$atasan_2 ?? 'Belum Disetujui'}}</button></h5>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Auth::user()->atasan2 == " ")
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h4>Atasan 2</h4>
+                            <p>{{'-'}}</p>
+                        </div>
+                    </div>
+                </div>
+                @else
+                <div class="col-lg-3 col-6">
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h4>Atasan 2</h4>
+                            <p>{{ $atasan2 }}</p>
+                        </div>
+                    </div>
+                </div>
+                @endif
+
+
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">

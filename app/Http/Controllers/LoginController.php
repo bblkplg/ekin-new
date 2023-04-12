@@ -41,7 +41,7 @@ class LoginController extends Controller
     {
         $data['periode'] = json_decode(request()->cookie('ekin-periode'));
 
-        return view('administrator.index');
+        return view('dashboard.index', $data);
     }
 
     public function logout()

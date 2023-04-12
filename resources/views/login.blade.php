@@ -166,7 +166,7 @@ a:hover {
     }
 
     .card2 {
-        padding: 50px;
+        padding: 0px;
     }
 
     .right {

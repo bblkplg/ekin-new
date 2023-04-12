@@ -35,7 +35,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{route('dashboard')}}" class="nav-link {{ Request::routeIs('dashboard') ? 'active' : '' }}">
+            <a href="{{route('dashboard')}}" class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -43,7 +43,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('target.index')}}" class="nav-link {{ Request::routeIs('target') ? 'active' : '' }}">
+            <a href="{{ route('target.index')}}" class="nav-link {{ request()->is('target') ? 'active' : '' }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Target
@@ -51,7 +51,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('kegiatan.index')}}" class="nav-link {{ Request::routeIs('kegiatan') ? 'active' : '' }}">
+            <a href="{{ route('kegiatan.index')}}" class="nav-link {{ request()->is('kegiatan') ? 'active' : '' }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Kegiatan
@@ -59,7 +59,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('hasil')}}" class="nav-link  {{ Request::routeIs('hasil') ? 'active' : '' }}">
+            <a href="{{ route('hasil')}}" class="nav-link  {{ request()->is('hasil') ? 'active' : '' }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Hasil
@@ -76,13 +76,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('data-pegawai')}}" class="nav-link  {{ Request::routeIs('data-pegawai') ? 'active' : '' }}">
+                <a href="{{ route('data-pegawai')}}" class="nav-link  {{ request()->is('data-pegawai') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Pegawai</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('indikator.index')}}" class="nav-link  {{ Request::routeIs('indikator.index') ? 'active' : '' }}">
+                <a href="{{ route('indikator.index')}}" class="nav-link  {{ request()->is('indikator') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Indikator</p>
                 </a>

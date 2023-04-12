@@ -33,7 +33,7 @@
   <style>
     @media (max-width: 830px) {
   .form-inline {
-    flex-direction: column;
+    flex-direction: initial;
     align-items: stretch;
   }
 }

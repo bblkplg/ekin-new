@@ -89,9 +89,16 @@
               </li>
             </ul>
           </li>
-
+            <li class="nav-item">
+                <a href="{{ route('logout') }}" class="nav-link  {{ Request::routeIs('logout.index') ? 'active' : '' }}">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Logout</p>
+                </a>
+            </li>
+            </ul>
+        </li>
         </ul>
-      </nav>
+    </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->

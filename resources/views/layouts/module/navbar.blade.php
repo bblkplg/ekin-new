@@ -10,7 +10,6 @@
     $periode = json_decode(request()->cookie('ekin-periode'));
     $periode = $periode != '' ? $periode:[];
   @endphp
-    Periode
     <div class="container-fluid">
       <form class="form-inline" action="{{ route('periode') }}" method="POST">
         @csrf
@@ -81,10 +80,6 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
-      <li class="nav-item">
-        <a href="{{ route('logout') }}" class="btn btn-danger">Logout</a>
-
-      </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="fullscreen" href="#" role="button">
           <i class="fas fa-expand-arrows-alt"></i>

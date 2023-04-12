@@ -185,8 +185,6 @@ a:hover {
                             <img id="logo" src="{{ asset('images/bblk__2_-removebg-preview.png') }}"  width="500" height="800">
                         </div>
                         <h6 class="mb-4 text-center heading">Kementrian Kesehatan RI <br> Balai Besar Laboratorium Kesehatan Palembang</h6>
-
-                        <h3 class="text-center msg-info">Ekinerja 2023</h3>
                         <form action="/dologin" method="post">
                             @csrf
                         <div class="form-group">
@@ -216,8 +214,7 @@ a:hover {
             </div>
             <div class="card card2">
                 <div class="my-auto mx-md-5 px-md-5 right">
-                    <h3 class="text-white">Aplikasi Ekinerja Pegawai BBLK Palembang</h3>
-                    <small class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</small>
+                    <h3 class="text-white"><center>Aplikasi Ekinerja Pegawai BBLK Palembang</center></h3>
                 </div>
             </div>
         </div>

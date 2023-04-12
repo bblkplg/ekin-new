@@ -19,7 +19,7 @@
     overflow-x: hidden;
     height: 100%;
     background-image: linear-gradient(to right, #00a2f9, #4f09da);
-    background-repeat: no-repeat;
+    background-repeat: inherit;
 }
 
 input, textarea {

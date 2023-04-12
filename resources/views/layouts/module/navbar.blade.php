@@ -13,7 +13,6 @@
     <div class="container-fluid">
       <form class="form-inline" action="{{ route('periode') }}" method="POST">
         @csrf
-        <label for="inlineFormEmail" class="m-2">Bulan</label>
         @if (isset($periode->bulan) && $periode->bulan != '')
         <select class="form-control m-2" id="inlineFormEmail" name="bulan">
           <option value="Januari" @if ($periode->bulan == "Januari") {{ 'selected' }} @endif>Januari</option>
@@ -31,7 +30,7 @@
         </select>
         @else
         <select class="form-control m-2" id="inlineFormEmail" name="bulan">
-          <option>Pilih Bulan</option>
+          <option>Bulan</option>
           <option value="Januari" >Januari</option>
           <option value="Februari">Februari</option>
           <option value="Maret" >Maret</option>
@@ -47,32 +46,37 @@
         </select>
         @endif
 
-
-
-        <label for="inlineFormPassword" class="m-2">Tahun</label>
-        @if (isset($periode->tahun) && $periode->tahun != '')
-        <select class="form-control m-2" id="inlineFormEmail" name="tahun">
-          @php
-            $year = date('Y');
-          @endphp
-          @for ($i=2020; $i<=$year; $i++)
-            <option value="{{ $i }}" @if ($periode->tahun == $i) {{ 'selected' }} @endif>{{ $i }}</option>
-          @endfor
-        </select>
-        @else
-        <select class="form-control m-2" id="inlineFormEmail" name="tahun">
-          <option>Pilih Tahun</option>
-          @php
-            $year = date('Y');
-          @endphp
-          @for ($i=2020; $i<=$year; $i++)
-            <option value="{{ $i }}">{{ $i }}</option>
-          @endfor
-        </select>
-        @endif
-
-        <button type="submit" class="btn btn-primary m-2">Submit</button>
-      </form>
+        <form>
+            <div class="form-row">
+              <div class="col">
+                @if (isset($periode->tahun) && $periode->tahun != '')
+                    <select class="form-control m-2" id="inlineFormEmail" name="tahun">
+                    @php
+                        $year = date('Y');
+                    @endphp
+                    @for ($i=2020; $i<=$year; $i++)
+                        <option value="{{ $i }}" @if ($periode->tahun == $i) {{ 'selected' }} @endif>{{ $i }}</option>
+                    @endfor
+                    </select>
+                @else
+              </div>
+              <div class="col">
+                <select class="form-control m-2" id="inlineFormEmail" name="tahun">
+                    <option>Tahun</option>
+                    @php
+                      $year = date('Y');
+                    @endphp
+                    @for ($i=2020; $i<=$year; $i++)
+                      <option value="{{ $i }}">{{ $i }}</option>
+                    @endfor
+                  </select>
+                @endif
+              </div>
+              <div class="col">
+                <button type="submit" class="btn btn-primary m-2">Priode</button>
+            </div>
+          </div>
+        </form>
     </div>
 
 

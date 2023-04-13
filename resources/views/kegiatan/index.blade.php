@@ -129,18 +129,20 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <td>Tanggal</td>
-                                        <td>Tugas</td>
-                                        <td>Uraian</td>
-                                        <td>No Order</td>
+                                        <td>No</td>
+                                        <td style="width:5%">Tanggal</td>
+                                        <td style="width:20%">Tugas</td>
+                                        <td style="width:30%">Uraian</td>
+                                        <td style="width:15%">No Order</td>
                                         <td>Jumlah</td>
                                         <td>Persetujuan</td>
                                         <td style="width:12%">Opsi</td>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($all as $d)
+                                    @foreach ($all as $key => $d)
                                     <tr>
+                                        <td>{{ $key+1 }}</td>
                                         <td>{{ $d->tanggal ?? '-' }}</td>
                                         <td>{{ $d->tugas ?? '-' }}</td>
                                         <td>{{ $d->uraian ?? '-' }}</td>

@@ -101,7 +101,7 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>#</th>
+                                        <th>No</th>
                                         <th>Tugas</th>
                                         <th>Target</th>
                                         <th>Persentase %</th>
@@ -109,12 +109,10 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php
-                                        $no=1;
-                                    @endphp
-                                    @foreach ($all as $d)
+
+                                    @foreach ($all as $key => $d)
                                     <tr>
-                                        <td>{{ $no++ }}</td>
+                                        <td>{{ $key+1 }}</td>
                                         <td>{{ $d->tugas }}</td>
                                         <td>{{ $d->target }}</td>
                                         <td>{{ $d->persentase }}</td>

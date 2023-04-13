@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Perilaku;
+use App\DataPegawai;
+use App\Kualitas;
 use Illuminate\Http\Request;
 
-class PerilakuController extends Controller
+class KualitasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +15,15 @@ class PerilakuController extends Controller
      */
     public function index()
     {
-        $data['perilaku'] = Perilaku::all();
 
-        return view('target.index', $data);
+        $data['periode'] = json_decode(request()->cookie('ekin-periode'));
+        $pegawai = (request()->nama);
+        $periode = json_decode(request()->cookie('ekin-periode'));
+
+        $data['pegawai'] = DataPegawai::where('nama',$pegawai)->first();
+        $data['kualitas'] = Kualitas::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama', $pegawai)->get();
+
+        return view('kualitas.index', $data);
     }
 
     /**

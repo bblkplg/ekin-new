@@ -60,8 +60,6 @@
                     <div class="card">
                         <div class="card-header">
                             <h2 class="card-title"><b>Hasil Kinerja Pegawai</b></h2><br>
-                            <a type="button" href="{{ url('print-hasil') }}" class="btn btn-primary btn-lg"><i class='fa fa-print'></i> Print Hasil</a>
-                            <a type="button" href="{{ url('hasil-pdf') }}" class="btn btn-primary btn-lg" target="_blank"><i class='fa fa-print'></i> Cetak Hasil</a>
                         </div>
                         <div class="card-body">
                             <table id="example" class="table">
@@ -110,7 +108,7 @@
                             </tr>
 
                             <tr>
-                                <td colspan="5" style="color:black"><h6>Kualitas</h6></td>
+                                <td colspan="5" style="color:black"><a type="button" href="{{ route('kualitas.index',[$pegawai]) }}" style="text-decoration: none;" class="btn btn-primary btn-lg">Kualitas</a></td>
                                     <td align="center" style="color:black">
                                         <?php $totalkualitas=0; ?>
                                         @foreach($kualitas as $data)
@@ -120,13 +118,13 @@
                                     </td>
                             </tr>
                             <tr>
-                                <td colspan="5"style="color:black"><h6>Perilaku</h6></td>
+                                <td colspan="5" style="color:black"><a type="button" href="" style="text-decoration: none;" class="btn btn-primary btn-lg">Perilaku</a></td>
                                 <td align="center" style="color:black">
                                     <?php $totalperilaku=0; ?>
                                     @foreach($perilaku as $data)
                                          <?php $totalperilaku += $data->jumlah ?>
                                     @endforeach
-                                   {{number_format($totalperilaku ?? '0.00', 2) }}
+                                   {{number_format($totalperilaku?? '0.00', 2) }}
                                 </td>
                             </tr>
                             <tr>

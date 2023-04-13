@@ -29,8 +29,12 @@ Route::get('/data-pegawai', 'DataPegawaiController@index')->name('data-pegawai')
 Route::resource('indikator', 'IndikatorController');
 Route::resource('target', 'TargetController');
 Route::resource('kegiatan','KegiatanController');
-Route::resource('perilaku','PerilakuController');
 
+// Route::resource('kualitas','KualitasController');
+Route::get('kualitas/{nama}','KualitasController@index')->name('kualitas.index');
+
+Route::get('validasi','ValidasiController@index')->name('validasi');
+Route::get('validasi-hasil/{nama}','ValidasiController@hasil')->name('validasihasil');
 // Route::get('/indikator', 'IndikatorController@index')->name('indikator.index');
 // Route::post('/indikator-store', 'IndikatorController@store')->name('indikator.store');
 // Route::get('/indikator-destroy', 'IndikatorController@destroy')->name('indikator.destroy');

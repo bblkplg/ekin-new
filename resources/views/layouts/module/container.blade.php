@@ -76,7 +76,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('data-pegawai')}}" class="nav-link  {{ request()->is('data-pegawai') ? 'active' : '' }}">
+                <a href="{{ route('validasi')}}" class="nav-link  {{ request()->is('validasi') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Validasi Pegawai</p>
                 </a>

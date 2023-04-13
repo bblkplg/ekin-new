@@ -278,3 +278,24 @@
 
                                         @php $total_nilai = $totalperilaku  + $totalkualitas  +  $total + $totaltambahan ; @endphp
                                         <h4><b>Jumlah Total Capaian Kinerja :  {{$total_nilai ?? '0.00', 2 }}</b></h4>
+                                        @php $now = date_create()->format('d/m/Y'); @endphp
+
+                                        <p style="text-align: right; margin-right:50px;">Palembang,{{$now}} </p>
+                                        <p style="text-align: left; margin-left:30px;">Pejabat Penilai</p>
+                                        <p style="text-align: right; margin-right:47px; margin-top:50px"> {{ Auth::user()->nama ?? '-' }}</p>
+                                        <table  class="p-size" style="width: 90%; border: 1px solid; margin-left: auto; margin-top: 5%; margin-right: auto;">
+                                        <tr>
+                                            <td>
+                                                <p style="text-align: center;">PERNYATAAN TANGGUNGJAWAB MUTLAK<br><br></p>
+                                                <p>Dengan ini menyatakan dan bertanggungjawab secara penuh atas kebenaran seluruh data kegiatan yang telah saya input ke dalam Aplikasi SI-NIKINDU (Sistem Penilaian Kinerja Individu). Apabila dikemudian hari terbukti pernyataan ini tidak benar dan menimbulkan kerugian negara, saya bersedia mengembalikan kerugian negara tersebut.</p>
+                                                <p style="text-align: right; margin-right:50px;">Palembang,{{$now}} </p>
+                                                <p style="text-align: right; margin-right:47px; margin-top:60px"> {{ Auth::user()->nama ?? '-' }}</p>
+
+                                            </td>
+                                        </tr>
+                                        </table>
+                                </div>
+                                </div>
+                            </div>
+                         </body>
+                    </html>

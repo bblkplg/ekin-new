@@ -50,12 +50,7 @@
 
     }
 
-    body.receipt .sheet { width: 58mm; height: 50mm } /* sheet size */
-    @media print {  body.receipt { width: 58mm }.pagebreak {
-        clear: both;
-        page-break-after: always
-    } } /* fix for Chrome */
-    .solid {border-style: solid;}
+
 </style>
 
         <body>

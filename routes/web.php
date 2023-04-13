@@ -29,6 +29,7 @@ Route::get('/data-pegawai', 'DataPegawaiController@index')->name('data-pegawai')
 Route::resource('indikator', 'IndikatorController');
 Route::resource('target', 'TargetController');
 Route::resource('kegiatan','KegiatanController');
+Route::resource('perilaku','PerilakuController');
 
 // Route::get('/indikator', 'IndikatorController@index')->name('indikator.index');
 // Route::post('/indikator-store', 'IndikatorController@store')->name('indikator.store');

@@ -57,8 +57,6 @@
     } } /* fix for Chrome */
     .solid {border-style: solid;}
 </style>
-<body>
-    <div class="form-group">
 
         <body>
               <h4 class="p-size"><center><b>LAPORAN HASIL E-KINERJA PEGAWAI</center></b></h4>
@@ -331,3 +329,8 @@
                                         </td>
                                     </tr>
                                     </table>
+                            </div>
+                            </div>
+                        </div>
+                     </body>
+                </html>

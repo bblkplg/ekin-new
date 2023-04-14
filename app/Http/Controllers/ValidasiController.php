@@ -45,7 +45,8 @@ class ValidasiController extends Controller
         $pegawai = (request()->nama);
         $periode = json_decode(request()->cookie('ekin-periode'));
 
-        $data['pegawai'] = (request()->nama);
+
+        $data['pegawai']= DataPegawai::where('nama', $pegawai)->first();
 
         $data['all'] = Hasil::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama', $pegawai)->get();
         $data['perilaku'] = Perilaku::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai)->get();

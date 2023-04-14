@@ -27,21 +27,21 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <h5 class="text-white mb-3"><b>{{'Pegawai'}} </b><br></h5>
-                                <h5 class="text-white mb-2">{{ Auth::user()->nama }} <br></h5>
-                                <h5 class="text-white mb-2">{{ Auth::user()->jabatan }}<br/></h5>
-                                <h5 class="text-white mb-2">{{ Auth::user()->instalasi }} <br></h5>
+                                <h5 class="text-white mb-2">{{ $pegawai->nama }} <br></h5>
+                                <h5 class="text-white mb-2">{{ $pegawai->jabatan }}<br/></h5>
+                                <h5 class="text-white mb-2">{{ $pegawai->instalasi }} <br></h5>
                                 <p  style="color:rgb(0, 255, 123)">{{$periode->bulan}}</p>
                                 <h2  style="color:rgb(0, 255, 157)">{{$periode->tahun}}</h2>
                             </div>
                             <div class="col-sm-4">
                                         <h5 class="text-white mb-3"><b>{{'Atasan 1'}} </b><br></h5>
-                                        <h5 class="text-white mb-4">{{ Auth::user()->atasan1 }}</h5>
+                                        <h5 class="text-white mb-4">{{ $pegawai->atasan1 }}</h5>
 
                             </div>
-                            @if (Auth::user()->atasan2 != '')
+                            @if ($pegawai->atasan2 != '')
                             <div class="col-sm-4">
                                 <h5 class="text-white mb-3"><b>{{'Atasan 2'}} </b><br></h5>
-                                <h5 class="text-white mb-4">{{ Auth::user()->atasan2 }}</h5>
+                                <h5 class="text-white mb-4">{{ $pegawai->atasan2 }}</h5>
 
                             </div>
                             @endif

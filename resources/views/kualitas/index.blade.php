@@ -59,35 +59,39 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <form class="forms-sample" action="{{route('kegiatan.store')}}" method="POST">
+                                <form class="forms-sample" action="{{route('kualitas.store')}}" method="POST">
                                     @csrf
                                       <div class="form-row">
                                           <div class="col-md-4 mb-3">
-                                              <select class="form-control" name="tugas" width='100'>
+                                              <select class="form-control" name="indikator" width='100'>
                                                   <option selected disabled>Pilih inidikator pegawai yang dinilai</option>
-                                                  {{-- @foreach ($target as $i)
-                                                      <option value="{{ $i->tugas }}">{{ $i->tugas }}</option>
-                                                  @endforeach --}}
+                                                  @foreach ($filterqly as $i)
+                                                      <option value="{{ $i->indikator }}">{{ $i->indikator }}</option>
+                                                  @endforeach
                                               </select>
                                           </div>
                                           <div class="col-md-3 mb-6">
-                                            <select class="form-control" name="tugas" width='100'>
+                                            <select class="form-control" name="definisi" width='100'>
                                                 <option selected disabled>Pilih inidikator pegawai yang dinilai</option>
-                                                {{-- @foreach ($target as $i)
-                                                    <option value="{{ $i->tugas }}">{{ $i->tugas }}</option>
-                                                @endforeach --}}
+                                                @foreach ($filterqly as $i)
+                                                    <option value="{{ $i->definisi }}">{{ $i->definisi }}</option>
+                                                @endforeach
                                             </select>
                                           </div>
                                           <div class="col-sm-1">
 
-                                              <input type="number" class="form-control" name="tanggal" placeholder="Tanggal">
+                                              <input type="text" class="form-control" name="target" id="indikator" placeholder="Target">
                                           </div>
                                           <div class="col-sm-2">
-                                              <input type="number" class="form-control" name="noorder" placeholder="Order">
+                                              <input type="number" class="form-control" name="bobot" placeholder="Bobot">
                                           </div>
                                           <div class="col-sm-1">
-                                              <input type="number" class="form-control" name="mulai"  placeholder="Jumlah">
+                                              <input type="number" class="form-control" name="capaian"  placeholder="Capaian">
                                           </div>
+
+                                          <input type="number" class="form-control" name="hasil"  placeholder="hasil" hidden>
+                                          <input type="text" class="form-control" name="nama" id="indikator" value="{{$pegawai->nama}}" hidden>
+                                          <input type="text" class="form-control" name="instansi" id="indikator" value="{{$pegawai->instansi}}" hidden>
                                           <div class="col-sm-1">
                                                   <button type="submit" class="btn btn-primary me-2">Submit</button>
                                               </form>
@@ -123,10 +127,10 @@
                                         <?php $total += $data->hasil ?>
 
                                         <td>
-                                         <form action="" method="post">
+                                         <form action="{{ route('kualitas.destroy', [$data->id_kualitas]) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
-                                                <a href="" class="btn btn-warning btn-sm">Edit</a>
+                                                <a href="{{ route('kualitas.edit', [$data->id_kualitas]) }}" class="btn btn-warning btn-sm">Edit</a>
                                                 <button class="btn btn-danger btn-sm">Hapus</button>
                                             </form>
                                         </td>
@@ -171,4 +175,36 @@
     <br>
 
 </div>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+// $(document).ready(function() {
+//     $.ajax({
+//         type:'get',
+//         url:'{{route('kualitas.kode')}}',
+//         success:function(response){
+//             console.log(response);
+//             var dataindikator = response;
+//             var indikator = {};
+//             var definisi = {};
+//             for(var i=0; i < dataindikator.length; i++){
+//                 indikator[dataindikator[i].indikator]=null
+//                 definisi[dataindikator[i].indikator]=dataindikator[i];
+//             }
+//             console.log("indikator");
+//             console.log(definisi);
+//         $('input#indikator').autocomplete({
+//             data: definisi,
+//             onAutocomplete:function(reqdata){
+//                 $('#definisi').val(definisi[reqdata]['definisi'])
+//                 $('#target').val(definisi[reqdata]['target'])
+//                 $('#bobot').val(definisi[reqdata]['bobot'])
+//                 $('#capaian').val(definisi[reqdata]['capaian'])
+//             }
+//         });
+//         }
+//     })
+// });
+</script>
 @endsection

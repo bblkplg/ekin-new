@@ -28,53 +28,57 @@
                             <h3 class="card-title">Edit Data Target</h3>
                         </div>
                         <div class="card-body">
-
-                            <form action="{{ route('kegiatan.update', $kegiatan->IdCatKegiatan) }}" method="post" enctype="multipart/form-data" >
+                            <form action="{{ route('kualitas.update',['id_kualitas' => $kualitas->id_kualitas]) }}" method="post" enctype="multipart/form-data" >
                                 @method('put')
                                 @csrf
-
                                 <div class="form-group">
                                     <label for="nama">Nama</label>
-                                    <input type="text" name="nama" class="form-control" value="{{ $kegiatan->nama }}" required>
+                                    <input type="text" name="nama" class="form-control" value="{{ $kualitas->nama }}" required>
                                     <p class="text-danger">{{ $errors->first('nama') }}</p>
                                 </div>
 
 
                                 <div class="form-group">
-                                    <label for="tanggal">tanggal</label>
-                                    <input type="text" name="tanggal" class="form-control" value="{{ $kegiatan->tanggal }}" required>
+                                    <label for="indikator">Indikator</label>
+                                    <input type="text" name="indikator" class="form-control" value="{{ $kualitas->indikator }}" required>
                                     <p class="text-danger">{{ $errors->first('tanggal') }}</p>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="bulan">Bulan</label>
-                                    <input type="text" name="bulan" class="form-control" value="{{ $kegiatan->bulan }}" required>
-                                    <p class="text-danger">{{ $errors->first('bulan') }}</p>
+                                    <label for="definisi">Bulan</label>
+                                    <input type="text" name="definisi" class="form-control" value="{{ $kualitas->definisi }}" required>
+                                    <p class="text-danger">{{ $errors->first('definisi') }}</p>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="tahun">Tahun</label>
-                                    <input type="text" name="tahun" class="form-control" value="{{ $kegiatan->tahun }}" required>
-                                    <p class="text-danger">{{ $errors->first('tahun') }}</p>
+                                    <label for="target">Target</label>
+                                    <input type="number" name="target" class="form-control" value="{{ $kualitas->target }}" required>
+                                    <p class="text-danger">{{ $errors->first('target') }}</p>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="tugas">Tugas</label>
-                                    <input type="text" name="tugas" class="form-control" value="{{ $kegiatan->tugas }}" required>
-                                    <p class="text-danger">{{ $errors->first('tugas') }}</p>
+                                    <label for="bobot">Bobot</label>
+                                    <input type="text" name="bobot" class="form-control" value="{{ $kualitas->bobot }}" required>
+                                    <p class="text-danger">{{ $errors->first('bobot') }}</p>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="uraian">uraian</label>
-                                    <input type="text" name="uraian" class="form-control" value="{{ $kegiatan->uraian }}" required>
-                                    <p class="text-danger">{{ $errors->first('uraian') }}</p>
+                                    <label for="capaian">capaian</label>
+                                    <input type="text" name="capaian" class="form-control" value="{{ $kualitas->capaian }}" required>
+                                    <p class="text-danger">{{ $errors->first('capaian') }}</p>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="noorder">noorder</label>
-                                    <input type="text" name="noorder" class="form-control" value="{{ $kegiatan->noorder }}">
-                                    <p class="text-danger">{{ $errors->first('noorder') }}</p>
+                                    <label for="hasil">Hasil</label>
+                                    <input type="text" name="hasil" class="form-control" value="{{ $kualitas->hasil }}">
+                                    <p class="text-danger">{{ $errors->first('hasil') }}</p>
                                 </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="instalasi" id="indikator" value="{{ $kualitas->instalasi }}" hidden>
+                                    <p class="text-danger">{{ $errors->first('hasil') }}</p>
+                                </div>
+
 
                                 <div class="form-group">
                                     <button class="btn btn-primary btn-sm">Update</button>

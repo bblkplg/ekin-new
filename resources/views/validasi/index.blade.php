@@ -26,27 +26,8 @@
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">
-                                <form class="forms-sample" action="{{route('target.store')}}" method="POST">
                                     @csrf
-                                    <div class="form-row col-12" >
-                                         <div class="col-md-4 mb-6">
-                                            <select class="form-control" name="tugas" width='100'>
-                                                <option selected disabled>Pilih Indikator Target</option>
-                                                {{-- @foreach ($indikator as $i)
-                                                    <option value="{{ $i->indikator }}">{{ $i->indikator }}</option>
-                                                @endforeach --}}
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4 mb-6">
-                                            <input type="number" class="form-control" name="target" placeholder="Target">
-                                        </div>
-                                        <div class="col-md-3 mb-6">
-                                            <input type="number" class="form-control" name="persentase"  placeholder="Bobot">
-                                        </div>
-                                        <div class="col-sm-1">
-                                            <button type="submit" class="btn btn-primary me-2">Submit</button>
-                                        </form>
-                                    </div>
+                                           <h4>Data Validasi</h4>
                                 </h3>
                             </div>
                         <div class="card-body">
@@ -73,12 +54,6 @@
                                             @endif
                                         @endforeach
                                         <td>
-                                            {{-- <form action="{{ route('target.destroy', $d->Id_Target) }}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <a href="{{ route('target.edit',[$d->nama]) }}" class="btn btn-warning btn-sm">Edit</a>
-                                                <button class="btn btn-danger btn-sm">Hapus</button>
-                                            </form> --}}
                                             <center><a href="{{ route('validasihasil',[$d->nama]) }}" class="btn btn-warning btn-sm">Validasi</a></center>
 
                                         </td>

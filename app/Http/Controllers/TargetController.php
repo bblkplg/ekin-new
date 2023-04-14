@@ -99,7 +99,9 @@ class TargetController extends Controller
 
     public function destroy(Request $request, Target $target)
     {
+
         $target->delete();
+
         return redirect(route('target.index'))->with(['success' => 'Target Sudah Dihapus']);
     }
 

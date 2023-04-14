@@ -118,7 +118,9 @@
                                     </td>
                             </tr>
                             <tr>
-                                <td colspan="5" style="color:black"><a type="button" href="" style="text-decoration: none;" class="btn btn-primary btn-lg">Perilaku</a></td>
+
+                                <td colspan="5" style="color:black"><a type="button" href="{{ route('perilakuhasil',[$perilakuhasil->id_perilaku]) }}" style="text-decoration: none; " class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal-lg{{$perilakuhasil->id_perilaku}}">Perilaku</a></td>
+
                                 <td align="center" style="color:black">
                                     <?php $totalperilaku=0; ?>
                                     @foreach($perilaku as $data)
@@ -175,9 +177,10 @@
             </div>
         </div>
 
+        @include('validasi.perilaku.perilaku')
+
     </section>
     <br>
 
 </div>
-
 @endsection

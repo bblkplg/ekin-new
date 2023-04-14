@@ -58,7 +58,7 @@ class HasilController extends Controller
         $data['perilaku'] = Perilaku::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->get();
         $data['kegiatan'] = Kegiatan::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->where('tugas', 'Like', '%tambah%')->get();
 
-
+        $data['perilakuhasil'] = Perilaku::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai)->first();
 
 
         $pdf = PDF::loadView('hasil.pdf', ['all' => $data['all'], 'kualitas' => $data['kualitas'], 'perilaku' => $data['perilaku'], 'kegiatan' => $data['kegiatan']]);

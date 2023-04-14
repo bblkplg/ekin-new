@@ -32,9 +32,17 @@ Route::resource('kegiatan','KegiatanController');
 
 // Route::resource('kualitas','KualitasController');
 Route::get('kualitas/{nama}','KualitasController@index')->name('kualitas.index');
+Route::post('kualitas-store','KualitasController@store')->name('kualitas.store');
+Route::delete('kualitas-destroy/{id_kualitas}', 'KualitasController@destroy')->name('kualitas.destroy');
+Route::get('kualitas-edit/{id_kualitas}', 'KualitasController@edit')->name('kualitas.edit');
+Route::put('kualitas-update/{id_kualitas}', 'KualitasController@update')->name('kualitas.update');
+
+Route::get('perilakuhasil/{id_perilaku}', 'ValidasiController@perilakuedit')->name('perilakuhasil');
 
 Route::get('validasi','ValidasiController@index')->name('validasi');
 Route::get('validasi-hasil/{nama}','ValidasiController@hasil')->name('validasihasil');
+
+
 // Route::get('/indikator', 'IndikatorController@index')->name('indikator.index');
 // Route::post('/indikator-store', 'IndikatorController@store')->name('indikator.store');
 // Route::get('/indikator-destroy', 'IndikatorController@destroy')->name('indikator.destroy');
@@ -55,6 +63,7 @@ Route::get('validasi-hasil/{nama}','ValidasiController@hasil')->name('validasiha
 // Route::put('/kegiatan-update/{kegiatan}', 'KegiatanController@update')->name('kegiatan.update');
 
 
+Route::get('kode','KualitasController@getakun')->name('kualitas.kode');
 
 
 

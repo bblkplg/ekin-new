@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Kualitas extends Model
 {
     protected $table = 'kualitas';
+    protected $primaryKey = 'id_kualitas';
     protected $guarded = [];
     public $timestamps = false;
 

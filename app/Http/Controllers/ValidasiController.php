@@ -51,16 +51,25 @@ class ValidasiController extends Controller
         $data['perilaku'] = Perilaku::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai)->get();
         $data['kualitas'] = Kualitas::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai)->get();
         $data['kegiatan'] = Kegiatan::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai)->where('tugas', 'Like', '%tambah%')->get();
+        $data['perilakuhasil'] = Perilaku::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai)->first();
+
+        return view('validasi.hasil', $data);
+    }
+
+    public function perilakuedit(){
+
+        $data['periode'] = json_decode(request()->cookie('ekin-periode'));
+        $periode = json_decode(request()->cookie('ekin-periode'));
+        $pegawai = (request()->nama);
+
+
+        $data['perilaku'] = Perilaku::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai)->first();
 
 
         return view('validasi.hasil', $data);
     }
 
 
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.

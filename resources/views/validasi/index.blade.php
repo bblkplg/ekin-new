@@ -79,7 +79,7 @@
                                                 <a href="{{ route('target.edit',[$d->nama]) }}" class="btn btn-warning btn-sm">Edit</a>
                                                 <button class="btn btn-danger btn-sm">Hapus</button>
                                             </form> --}}
-                                            <a href="{{ route('validasihasil',[$d->nama]) }}" class="btn btn-warning btn-sm">Edit</a>
+                                            <center><a href="{{ route('validasihasil',[$d->nama]) }}" class="btn btn-warning btn-sm">Validasi</a></center>
 
                                         </td>
                                     </tr>

@@ -25,6 +25,10 @@ class ValidasiController extends Controller
             $pegawai = DataPegawai::where('api_id',Auth::user()->api_id)->first();
             $periode = json_decode(request()->cookie('ekin-periode'));
 
+            if(!isset($periode)){
+                return redirect(route('dashboard'))->with(['failed' => 'Silahkan pilih periode terlebih dahulu']);
+            }
+
             $data['perilaku'] = Perilaku::join('datapegawai','datapegawai.nama', '=','perilaku.nama')->where('perilaku.bulan', $periode->bulan)->where('perilaku.tahun', $periode->tahun)->where('datapegawai.atasan1', $pegawai->nama)->get();
             $data['kualitas'] = Kualitas::select('kualitas.nama as nama', DB::raw('Sum(kualitas.hasil) as total_kualitas'))->where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('datapegawai.atasan1', $pegawai->nama)->join('datapegawai','datapegawai.nama', '=','kualitas.nama')->where('datapegawai.atasan1', $pegawai->nama)->groupBy('kualitas.nama')->get();
 

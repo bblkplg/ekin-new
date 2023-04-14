@@ -189,6 +189,8 @@ a:hover {
                         <div class="form-group">
                             <label class="form-control-label text-muted">Username</label>
                             <select class="form-control select2" name="nama">
+                                <option selected disabled>Username</option>
+
                                 @foreach ($datapegawai as $d)
                                   <option value="{{$d->nama}}">{{$d->nama}}</option>
                                 @endforeach
@@ -226,14 +228,21 @@ a:hover {
 <script>
     $(function () {
     //Initialize Select2 Elements
-    $('.select2').select2()
+    // $('.select2').select2()
 
-    //Initialize Select2 Elements
-    $('.select2bs4').select2({
-      theme: 'bootstrap4'
-    })
-
+    // //Initialize Select2 Elements
+    // $('.select2bs4').select2({
+    //   theme: 'bootstrap4'
+    // })
+    $(".select2").select2({
+	minimumInputLength: 1,
+  language: {
+  	inputTooShort: function() {
+  		return 'Ketik 1 Karakter Kata Untuk Menampilkan Data';
+  	}
+  }
   })
 
+});
   // DropzoneJS Demo Code End
 </script>

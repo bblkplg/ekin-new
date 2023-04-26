@@ -66,7 +66,7 @@
               </p>
             </a>
           </li>
-          @if (Auth::user()->jabatan == 'Kasie')
+          @if (Auth::user()->jabatan == 'Kasie' || Auth::user()->jabatan == 'Kepala Instalasi' Auth::user()->jabatan == 'Kabid' || Auth::user()->jabatan == 'Kepala BBLK' || Auth::user()->jabatan == 'Kabag')
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-circle"></i>

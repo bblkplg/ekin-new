@@ -24,8 +24,10 @@ Route::post('/dologin', 'LoginController@authenticate');
 Route::get('logout', 'LoginController@logout')->name('logout');
 
 Route::get('/dashboard', 'LoginController@dashboard')->name('dashboard');
-Route::get('/data-pegawai', 'DataPegawaiController@index')->name('data-pegawai');
 
+// Route::get('/data-pegawai', 'DataPegawaiController@index')->name('data-pegawai');
+
+Route::resource('datapegawai', 'DataPegawaiController');
 Route::resource('indikator', 'IndikatorController');
 Route::resource('target', 'TargetController');
 Route::resource('kegiatan','KegiatanController');

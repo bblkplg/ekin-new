@@ -11,6 +11,6 @@ class DataPegawai extends Authenticatable
     use Notifiable;
     
     protected $table = 'datapegawai';
-    protected $primaryKey = 'api_id';
     protected $guarded = [];
+    public $timestamps = false;
 }

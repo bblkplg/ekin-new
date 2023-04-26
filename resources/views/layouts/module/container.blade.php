@@ -66,7 +66,7 @@
               </p>
             </a>
           </li>
-          @if (Auth::user()->jabatan == 'Kasie' || Auth::user()->jabatan == 'Kepala Instalasi' Auth::user()->jabatan == 'Kabid' || Auth::user()->jabatan == 'Kepala BBLK' || Auth::user()->jabatan == 'Kabag')
+          @if (Auth::user()->jabatan == 'Kasie' || Auth::user()->jabatan == 'Kepala Instalasi' || Auth::user()->jabatan == 'Kabid' || Auth::user()->jabatan == 'Kepala BBLK' || Auth::user()->jabatan == 'Kabag')
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-circle"></i>
@@ -98,7 +98,7 @@
             <ul class="nav nav-treeview">
               @if (Auth::user()->nama == 'Muhammad Fikri,S.Kom')
               <li class="nav-item">
-                <a href="{{ route('data-pegawai')}}" class="nav-link  {{ request()->is('data-pegawai') ? 'active' : '' }}">
+                <a href="{{ route('datapegawai.index')}}" class="nav-link  {{ request()->is('datapegawai') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Data Pegawai</p>
                 </a>

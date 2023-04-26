@@ -190,7 +190,6 @@ a:hover {
                             <label class="form-control-label text-muted">Username</label>
                             <select class="form-control select2" name="nama">
                                 <option selected disabled>Username</option>
-
                                 @foreach ($datapegawai as $d)
                                   <option value="{{$d->nama}}">{{$d->nama}}</option>
                                 @endforeach
@@ -235,14 +234,13 @@ a:hover {
     //   theme: 'bootstrap4'
     // })
     $(".select2").select2({
-	minimumInputLength: 1,
-  language: {
-  	inputTooShort: function() {
-  		return 'Ketik 1 Karakter Kata Untuk Menampilkan Data';
-  	}
-  }
+	minimumInputLength: 3,
+    language: {
+  	    inputTooShort: function() {
+  		return 'Ketik 3 Karakter Kata Untuk Menampilkan Data';
+  	    }
+    }
   })
-
 });
   // DropzoneJS Demo Code End
 </script>

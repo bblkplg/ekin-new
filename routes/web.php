@@ -40,10 +40,18 @@ Route::get('kualitas-edit/{id_kualitas}', 'KualitasController@edit')->name('kual
 Route::put('kualitas-update/{id_kualitas}', 'KualitasController@update')->name('kualitas.update');
 
 Route::get('perilakuhasil/{id_perilaku}', 'ValidasiController@perilakuedit')->name('perilakuhasil');
-
+//validasi Pegawai
 Route::get('validasi','ValidasiController@index')->name('validasi');
 Route::get('validasi-hasil/{nama}','ValidasiController@hasil')->name('validasihasil');
+//validasi Kegiatan
+Route::get('validasi-target','ValidasiKegiatanController@index')->name('validasitarget');
 
+Route::get('validasi-kegiatan','ValidasiKegiatanController@index')->name('validasikegiatan');
+Route::get('validasi-kegiatan/{nama}','ValidasiKegiatanController@kegiatan')->name('datakegiatan');
+Route::put('validasi-kegiatan-Update/{IdCatKegiatan}', 'ValidasiKegiatanController@update')->name('updateverif');
+Route::put('validasi-Update/{nama}', 'ValidasiKegiatanController@verifall')->name('updateverifall');
+
+Route::get('validasi-kegiatan/{IdCatKegiatan}', 'ValidasiController@kegiatan')->name('kegiatanget');
 
 // Route::get('/indikator', 'IndikatorController@index')->name('indikator.index');
 // Route::post('/indikator-store', 'IndikatorController@store')->name('indikator.store');

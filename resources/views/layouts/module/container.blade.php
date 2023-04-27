@@ -76,17 +76,26 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <a href="{{ route('validasikegiatan')}}" class="nav-link  {{ request()->is('validasi-kegiatan') ? 'active' : '' }}">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Validasi Kegiatan Pegawai</p>
+                  </a>
+                </li>
+
+              </ul>
+            <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="{{ route('validasi')}}" class="nav-link  {{ request()->is('validasi') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Data Validasi Pegawai</p>
+                  <p>Validasi Hasil Pegawai</p>
                 </a>
               </li>
 
             </ul>
           </li>
           @endif
-         
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>

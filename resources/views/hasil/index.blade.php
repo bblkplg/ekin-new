@@ -60,7 +60,7 @@
                     <div class="card">
                         <div class="card-header">
                             <h2 class="card-title"><b>Hasil Kinerja Pegawai</b></h2><br>
-                            <a type="button" href="{{ url('print-hasil') }}" class="btn btn-primary btn-lg"><i class='fa fa-print'></i> Print Hasil</a>
+                            <a type="button" href="{{ url('print-hasil') }}" class="btn btn-primary btn-lg" target="_blank"><i class='fa fa-print'></i> Print Hasil</a>
                             <a type="button" href="{{ url('hasil-pdf') }}" class="btn btn-primary btn-lg" target="_blank"><i class='fa fa-print'></i> Cetak Hasil</a>
                         </div>
                         <div class="card-body">

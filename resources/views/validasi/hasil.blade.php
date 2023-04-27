@@ -108,7 +108,7 @@
                             </tr>
 
                             <tr>
-                                <td colspan="5" style="color:black"><a type="button" href="{{ route('kualitas.index',[$pegawai]) }}" style="text-decoration: none;" class="btn btn-primary btn-lg">Kualitas</a></td>
+                                <td colspan="5" style="color:black"><a type="button" href="{{ route('kualitas.index',[$pegawai->nama]) }}" style="text-decoration: none;" class="btn btn-primary btn-lg">Kualitas</a></td>
                                     <td align="center" style="color:black">
                                         <?php $totalkualitas=0; ?>
                                         @foreach($kualitas as $data)

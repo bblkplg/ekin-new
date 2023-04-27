@@ -59,7 +59,7 @@
                 @php
                     $year = date('Y');
                 @endphp
-                @for ($i=2020; $i<=$year; $i++)
+                @for ($i=2018; $i<=$year; $i++)
                     <option value="{{ $i }}" @if ($periode->tahun == $i) {{ 'selected' }} @endif>{{ $i }}</option>
                 @endfor
                 </select>
@@ -69,7 +69,7 @@
                     @php
                       $year = date('Y');
                     @endphp
-                    @for ($i=2020; $i<=$year; $i++)
+                    @for ($i=2018; $i<=$year; $i++)
                       <option value="{{ $i }}">{{ $i }}</option>
                     @endfor
                   </select>

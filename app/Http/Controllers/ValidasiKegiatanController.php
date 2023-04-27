@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\DataPegawai;
+use App\Kegiatan;
 use App\Kualitas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class KualitasController extends Controller
+class ValidasiKegiatanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,21 +19,35 @@ class KualitasController extends Controller
     {
 
         $data['periode'] = json_decode(request()->cookie('ekin-periode'));
+
         $pegawai = (request()->nama);
 
         $periode = json_decode(request()->cookie('ekin-periode'));
 
         $data['pegawai'] = DataPegawai::where('nama',$pegawai)->first();
 
-        $data['kualitas'] = Kualitas::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama', $pegawai)->get();
+        $data['all'] = Kegiatan::select('kegiatan.nama','kegiatan.bulan','kegiatan.tahun' )->where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->join('datapegawai','datapegawai.nama', '=','kegiatan.nama')->where('datapegawai.atasan1', Auth::user()->nama)->groupBy('kegiatan.bulan','kegiatan.nama','kegiatan.tahun')->get();
 
-        $patokan_bulan = 'Januari';
-        $patokan_tahun = '2023';
+        return view('validasikegiatan.index', $data);
+    }
 
-        $data['filterqly'] = Kualitas::where('bulan', $patokan_bulan)->where('tahun', $patokan_tahun)->where('nama', $pegawai)->distinct()->get();
+    public function kegiatan(Kegiatan $kegiatan)
+    {
+
+        $periode = json_decode(request()->cookie('ekin-periode'));
+
+        $pegawaireq = (request()->nama);
+
+        $pegawai = DataPegawai::where('nama', $pegawaireq)->first();
+
+        $periode = json_decode(request()->cookie('ekin-periode'));
+
+        $editkeg = Kegiatan::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->first();
+        // $data['all'] = Kegiatan::select('kegiatan.nama','kegiatan.bulan','kegiatan.tahun','kegiatan.tugas','kegiatan.uraian' )->where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->join('datapegawai','datapegawai.nama', '=','kegiatan.nama')->where('kegiatan.nama',$pegawai)->groupBy('kegiatan.bulan','kegiatan.nama','kegiatan.tahun','kegiatan.tugas','kegiatan.uraian')->get();
+        $all = Kegiatan::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->get();
 
 
-        return view('kualitas.index', $data);
+        return view('validasikegiatan.kegiatan',  compact('periode','pegawai','all','kegiatan','editkeg'));
     }
 
 
@@ -133,32 +148,53 @@ class KualitasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Kualitas $kualitas)
+    public function update(Request $request, Kegiatan $kegiatan)
     {
-        $kualitas = Kualitas::where('id_kualitas', request()->id_kualitas)->first();
+        $kegiatan = Kegiatan::where('IdCatKegiatan', request()->IdCatKegiatan)->first();
         $pegawai = (request()->nama);
         $periode = json_decode(request()->cookie('ekin-periode'));
 
-        $hasil  = (($request->bobot / $request->target) *$request->capaian);
-
-        $kualitas->update([
-            'nama' => $pegawai,
-            'bulan' => $periode->bulan,
-            'tahun' => $periode->tahun,
-            'indikator' => $request->indikator,
-            'definisi' => $request->definisi,
-            'target' => $request->target,
-            'bobot' => $request->bobot,
-            'capaian' => $request->capaian,
-            'instalasi' => $request->instalasi,
-            'hasil' => $hasil,
-
+        $kegiatan->update([
+            'kepala_instalasi' => $request->kepala_instalasi,
+            'catatan' => $request->catatan,
         ]);
 
 
         return redirect()->back()->with(['success' => 'Data Indikator Diperbaharui']);
     }
 
+    public function verifall(Request $request)
+    {
+        $pegawai = (request()->nama);
+        $periode = json_decode(request()->cookie('ekin-periode'));
+        $kegiatan = Kegiatan::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama', $pegawai)->get();
+
+        foreach ($kegiatan as $data){
+        if($data->kepala_instalasi == "Belum Disetujui"){
+            $cari = Kegiatan::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama', $pegawai)->where('kepala_instalasi', "Belum Disetujui")->get();
+
+            foreach ($cari as $cari){
+            $cari->update([
+                    'kepala_instalasi' => $request->kepala_instalasi,
+                ]);
+            }
+
+        }elseif($data->kepala_instalasi == "Telah Disetujui"){
+                $cari = Kegiatan::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama', $pegawai)->where('kepala_instalasi', "Telah Disetujui")->get();
+
+                foreach ($cari as $cari){
+                $cari->update([
+                        'kepala_instalasi' => $request->kepala_instalasi,
+                    ]);
+                }
+        }else{
+            //back
+        }
+    }
+
+
+        return redirect()->back()->with(['success' => 'Data Indikator Diperbaharui']);
+    }
     /**
      * Remove the specified resource from storage.
      *

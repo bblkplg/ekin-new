@@ -53,6 +53,9 @@ Route::put('validasi-Update/{nama}', 'ValidasiKegiatanController@verifall')->nam
 
 Route::get('validasi-kegiatan/{IdCatKegiatan}', 'ValidasiController@kegiatan')->name('kegiatanget');
 
+
+Route::get('hitung-hasil', 'HasilController@auto')->name('hitung');
+
 // Route::get('/indikator', 'IndikatorController@index')->name('indikator.index');
 // Route::post('/indikator-store', 'IndikatorController@store')->name('indikator.store');
 // Route::get('/indikator-destroy', 'IndikatorController@destroy')->name('indikator.destroy');

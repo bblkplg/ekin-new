@@ -24,6 +24,12 @@ class ValidasiKegiatanController extends Controller
 
         $periode = json_decode(request()->cookie('ekin-periode'));
 
+
+        if(!isset($periode)){
+            return redirect(route('dashboard'))->with(['failed' => 'Silahkan pilih periode terlebih dahulu']);
+        }
+
+
         $data['pegawai'] = DataPegawai::where('nama',$pegawai)->first();
 
         $data['all'] = Kegiatan::select('kegiatan.nama','kegiatan.bulan','kegiatan.tahun' )->where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->join('datapegawai','datapegawai.nama', '=','kegiatan.nama')->where('datapegawai.atasan1', Auth::user()->nama)->groupBy('kegiatan.bulan','kegiatan.nama','kegiatan.tahun')->get();

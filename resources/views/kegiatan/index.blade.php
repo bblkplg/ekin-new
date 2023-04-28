@@ -48,21 +48,8 @@
                         <div class="inner">
                             <h4>Atasan 1</h4>
                             <p>{{ $atasan1 }}</p>
-                            @foreach ($validasi as $datavalidasi)
-                            @php
-                            if ($datavalidasi->kepala_instalasi == 'Telah Disetujui') {
-                                $bandage = 'badge badge-pill badge-success';
-                                $atasan_2 = 'Disetujui';
-                            } elseif ($datavalidasi->kepala_instalasi == 'Belum Disetujui') {
-                                $bandage = 'badge badge-pill badge-danger';
-                                $atasan_2 = 'Belum Disetujui';
-                            } else {
-                                $bandage = 'badge badge-pill badge-warning';
-                                $atasan_2 = 'Menunggu Persetujuan';
-                            }
-                            @endphp
-                        @endforeach
-                            <button type='button' class='{{$bandage ?? 'badge badge-pill badge-danger'}}'><i class='fa fa-info'> </i> {{$atasan_2 ?? 'Belum Disetujui'}}</button>
+                            <br>
+
                         </div>
                     </div>
                 </div>
@@ -148,7 +135,22 @@
                                         <td>{{ $d->uraian ?? '-' }}</td>
                                         <td>{{ $d->noorder ?? '-' }}</td>
                                         <td>{{ $d->mulai ?? '-' }}</td>
-                                        <td>{{ $d->kepala_instalasi ?? '-' }}</td>
+                                        @php
+                                        if ($d->kepala_instalasi == "Telah Disetujui") {
+                                            $bandage = 'badge badge-pill badge-success';
+                                            $kepala_instalasi = 'Telah Disetujui';
+                                        } elseif ($d->kepala_instalasi == "Belum Disetujui") {
+                                            $bandage = 'badge badge-pill badge-warning';
+                                            $kepala_instalasi = 'Tidak Disetujui';
+                                        } else {
+                                            $bandage = 'badge badge-pill badge-warning';
+                                            $kepala_instalasi = 'Tidak Disetujui';
+                                        }
+                                    @endphp
+                                    <div class="col identitas">
+                                        <td><span class='{{$bandage}}'>{{$d->kepala_instalasi }}</span></td>
+                                    </div>
+
                                     <td>
                                             <form action="{{ route('kegiatan.destroy', $d->IdCatKegiatan) }}" method="post">
                                                 @csrf

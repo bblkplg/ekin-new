@@ -90,6 +90,7 @@
                                                 @foreach ($target as $i)
                                                     <option value="{{ $i->tugas }}">{{ $i->tugas }}</option>
                                                 @endforeach
+                                                <option value="Kegiatan Tambahan">Kegiatan Tambahan</option>
                                             </select>
                                         </div>
                                         <div class="col-md-3 mb-6">
@@ -100,7 +101,7 @@
                                             <input type="number" class="form-control" name="tanggal" placeholder="Tanggal">
                                         </div>
                                         <div class="col-sm-2">
-                                            <input type="number" class="form-control" name="noorder" placeholder="Order">
+                                            <input type="text" class="form-control" name="noorder" placeholder="Order">
                                         </div>
                                         <div class="col-sm-1">
                                             <input type="number" class="form-control" name="mulai"  placeholder="Jumlah">

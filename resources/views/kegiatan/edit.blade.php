@@ -35,7 +35,7 @@
 
                                 <div class="form-group">
                                     <label for="nama">Nama</label>
-                                    <input type="text" name="nama" class="form-control" value="{{ $kegiatan->nama }}" required>
+                                    <input type="text" name="nama" class="form-control" value="{{ $kegiatan->nama }}" required disabled>
                                     <p class="text-danger">{{ $errors->first('nama') }}</p>
                                 </div>
 
@@ -48,13 +48,13 @@
 
                                 <div class="form-group">
                                     <label for="bulan">Bulan</label>
-                                    <input type="text" name="bulan" class="form-control" value="{{ $kegiatan->bulan }}" required>
+                                    <input type="text" name="bulan" class="form-control" value="{{ $kegiatan->bulan }}" required disabled>
                                     <p class="text-danger">{{ $errors->first('bulan') }}</p>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="tahun">Tahun</label>
-                                    <input type="text" name="tahun" class="form-control" value="{{ $kegiatan->tahun }}" required>
+                                    <input type="text" name="tahun" class="form-control" value="{{ $kegiatan->tahun }}" required disabled>
                                     <p class="text-danger">{{ $errors->first('tahun') }}</p>
                                 </div>
 

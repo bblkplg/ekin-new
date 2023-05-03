@@ -242,13 +242,7 @@
                                 </tbody>
                             </table>
                             @php
-                            if($total != NULL){
-
-                                $total_nilai = ($hasilinisiatif  + $hasilkeberadaan + $hasilkehandalan + $hasilkepatuhan + $hasilkerjasama + $hasilsikap);
-                            }else{
-
-                                echo('0.00');
-                            }
+                             $total_nilai = (($hasilinisiatif ?? '0.00')+ ($hasilkeberadaan ?? '0.00') + ($hasilkehandalan ?? '0.00') + ($hasilkepatuhan ?? '0.00') + ($hasilkerjasama ?? '0.00') + ($hasilsikap ?? '0.00'));
                             @endphp
                                 <h4 class="p-size" align="right" style="margin-right:30px; margin-top: 0"><b>Total Nilai Perilaku : {{$total_nilai ?? '0.00' }}</b></h4>
                                 <h4 class="p-size"><b>D. Kegiatan Tambahan</b></h4>

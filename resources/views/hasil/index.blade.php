@@ -67,21 +67,17 @@
                             <table id="example" class="table">
                                 <thead>
                                     <tr>
-                                        <th>Nama</th>
-                                        <td>Bulan - Tahun</td>
                                         <td>Indikator</td>
                                         <td>Target</td>
-                                        <td>Bobot</td>
+                                        <td>Bobot %</td>
                                         <td>Capaian</td>
-                                        <td>Hasil</td>
+                                        <td>Hasil %</td>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $total=0; ?>
                                     @foreach ($all as $d)
                                     <tr>
-                                        <td>{{ $d->nama }}</td>
-                                        <td>{{ $d->bulan }} - {{ $d->tahun }}</td>
                                         <td>{{ $d->indikator ?? '0.00' }}</td>
                                         <td>{{ $d->target ?? '0.00' }}</td>
                                         <td>{{ $d->bobot ?? '0.00' }}</td>

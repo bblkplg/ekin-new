@@ -43,22 +43,23 @@
                                 </thead>
                                 <tbody>
 
-                                @foreach ($perilaku as $key => $d)
+                                    @foreach ($perilaku as $key => $d)
                                     <tr>
                                         <td>{{ $key+1 }}</td>
                                         <td>{{ $d->nama }}</td>
                                         <td>{{number_format($d->jumlah ?? '0.00', 2) }}</td>
                                         @foreach ($kualitas as $data)
-                                            @if ($data->nama == $d->nama)
-                                                <td>{{number_format($data->total_kualitas?? '0.00', 2) }}</td>
-                                            @endif
+                                        @if ($data->nama == $d->nama)
+                                        <td>{{number_format($data->total_kualitas?? '0.00', 2) }}</td>
+                                        @endif
                                         @endforeach
                                         <td>
                                             <center><a href="{{ route('validasihasil',[$d->nama]) }}" class="btn btn-warning btn-sm">Validasi</a></center>
 
                                         </td>
                                     </tr>
-                                    @endforeach
+
+                                        @endforeach
                                 </tbody>
                             </table>
                         </div>

@@ -32,59 +32,55 @@ class ValidasiController extends Controller
 
             $data['perilaku'] = Perilaku::join('datapegawai','datapegawai.nama', '=','perilaku.nama')->where('perilaku.bulan', $periode->bulan)->where('perilaku.tahun', $periode->tahun)->where('datapegawai.atasan1', $pegawai->nama)->get();
             $data['kualitas'] = Kualitas::select('kualitas.nama as nama', DB::raw('Sum(kualitas.hasil) as total_kualitas','IFNULL( (kualitas.hasil) as total_kualitas , 0 )'))->where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('datapegawai.atasan1', $pegawai->nama)->join('datapegawai','datapegawai.nama', '=','kualitas.nama')->where('datapegawai.atasan1', $pegawai->nama)->groupBy('kualitas.nama')->get();
-
             $data['hasil'] = Hasil::where('tahun',$periode->tahun)->where('bulan',$periode->bulan)->where('nama',$pegawai->nama)->get();
 
             $hasil = DataPegawai::join('hasil','hasil.nama', '=','datapegawai.nama')->select('datapegawai.nama')->where('hasil.tahun',$periode->tahun)->where('hasil.bulan',$periode->bulan)->where('datapegawai.atasan1', $pegawai->nama)->distinct()->groupby('datapegawai.nama')->get();
 
+            $perilaku = Perilaku::leftJoin('datapegawai','datapegawai.nama', '=','perilaku.nama')->where('perilaku.bulan', $periode->bulan)->where('perilaku.tahun', $periode->tahun)->where('datapegawai.atasan1', $pegawai->nama)->first();
+            $data['datapegawai'] = DataPegawai::join('kualitas','kualitas.nama', '=','datapegawai.nama')->select('datapegawai.nama')->where('kualitas.tahun',$periode->tahun)->where('datapegawai.atasan1', $pegawai->nama)->distinct()->groupby('datapegawai.nama','kualitas.hasil')->get();
 
-            $perilaku = Perilaku::join('datapegawai','datapegawai.nama', '=','perilaku.nama')->where('perilaku.bulan', $periode->bulan)->where('perilaku.tahun', $periode->tahun)->where('datapegawai.atasan1', $pegawai->nama)->first();
             $kualitas = Kualitas::select('kualitas.nama as nama', DB::raw('Sum(kualitas.hasil) as total_kualitas','IFNULL( (kualitas.hasil) as total_kualitas , 0 )'))->where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('datapegawai.atasan1', $pegawai->nama)->join('datapegawai','datapegawai.nama', '=','kualitas.nama')->where('datapegawai.atasan1', $pegawai->nama)->groupBy('kualitas.nama')->first();
 
-            $nilai= 0;
+            $nilai= '0.00';
 
-            // if($hasil != null){
-            //     $data['perilaku'] = ([
-            //         'nama' =>  $hasil->nama,
-            //         'perilaku' =>  $nilai,
-            //         'kualitas' =>  $nilai,
-            //     ]);
-            //     $data['kualitas'] = ([
-            //         'nama' =>  $hasil->nama,
-            //         'perilaku' =>  $nilai,
-            //         'kualitas' =>  $nilai,
-            //     ]);
+            // foreach($hasil as $hasil){
+            //   $data['perilaku'] = ([
+            //     'nama' =>  $hasil->nama,
+            //     'perilaku' =>  $perilaku->jumlah,
+            //     'kualitas' =>  $kualitas->total_kualitas,
 
-            // }elseif($kualitas == null){
+            // ]);
+            // $data['kualitas'] = ([
+            //     'nama' =>  $hasil->nama,
+            //     'perilaku' =>   $perilaku->jumlah,
+            //     'kualitas' =>  $nilai,
+            // ]);
+
+
+            // if($data['perilaku'] == null || $data['kualitas'] == null){
+
+
+            // }elseif($data['kualitas'] == null){
             //     $data['kualitas'] = ([
             //         'nama' =>  $hasil->nama,
             //         'perilaku' =>  $nilai,
             //         'kualitas' =>  $nilai,
             //     ]);
             //     $data['perilaku'] = Perilaku::join('datapegawai','datapegawai.nama', '=','perilaku.nama')->where('perilaku.bulan', $periode->bulan)->where('perilaku.tahun', $periode->tahun)->where('datapegawai.atasan1', $pegawai->nama)->get();
-            // }elseif($perilaku == null){
+            // }elseif($data['perilaku'] == null){
             //     $data['perilaku'] = ([
             //         'nama' =>  $hasil->nama,
             //         'perilaku' =>  $nilai,
             //         'kualitas' =>  $nilai,
             //     ]);
             //     $data['kualitas'] = Kualitas::select('kualitas.nama as nama', DB::raw('Sum(kualitas.hasil) as total_kualitas','IFNULL( (kualitas.hasil) as total_kualitas , 0 )'))->where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('datapegawai.atasan1', $pegawai->nama)->join('datapegawai','datapegawai.nama', '=','kualitas.nama')->where('datapegawai.atasan1', $pegawai->nama)->groupBy('kualitas.nama')->get();
-            // }elseif($perilaku && $kualitas == null){
-            //     $data['perilaku'] = ([
-            //         'nama' =>  $hasil->nama,
-            //         'perilaku' =>  $nilai,
-            //         'kualitas' =>  $nilai,
-            //     ]);
-            //     $data['kualitas'] = ([
-            //         'nama' =>  $hasil->nama,
-            //         'perilaku' =>  $nilai,
-            //         'kualitas' =>  $nilai,
-            //     ]);
             // }else{
             //     $data['perilaku'] = Perilaku::join('datapegawai','datapegawai.nama', '=','perilaku.nama')->where('perilaku.bulan', $periode->bulan)->where('perilaku.tahun', $periode->tahun)->where('datapegawai.atasan1', $pegawai->nama)->get();
             //     $data['kualitas'] = Kualitas::select('kualitas.nama as nama', DB::raw('Sum(kualitas.hasil) as total_kualitas','IFNULL( (kualitas.hasil) as total_kualitas , 0 )'))->where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('datapegawai.atasan1', $pegawai->nama)->join('datapegawai','datapegawai.nama', '=','kualitas.nama')->where('datapegawai.atasan1', $pegawai->nama)->groupBy('kualitas.nama')->get();
-
             // }
+
+        //   }
+
             return view('validasi.index', $data);
     }
 

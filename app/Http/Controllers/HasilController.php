@@ -29,14 +29,12 @@ class HasilController extends Controller
         // $year = date('Y');
         // $month = date('m',strtotime("-1 month"));
         $bulan = new Hasil();
+        $filter = Target::join('hasil','target.tugas','!=','hasil.indikator')->where('hasil.bulan', $periode->bulan)->where('hasil.tahun', $periode->tahun)->where('hasil.nama',$pegawai->nama)->get();
         $data['all'] = Hasil::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->get();
         $data['kualitas'] = Kualitas::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->get();
         $data['perilaku'] = Perilaku::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->get();
-        $data['kegiatan'] = Kegiatan::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->where('tugas', 'Like', '%tambah%')->get();
-
+        $data['kegiatan'] = Kegiatan::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->where('tugas', 'Like', 'Kegiatan Tambahan')->get();
         $data['query'] =  DB::table('Kegiatan')->join('target','target.tugas','kegiatan.tugas')->select('target.tugas','target','persentase', DB::raw('Sum(kegiatan.mulai) as capaian'))->groupby('target.tugas','target.target','target.persentase')->where('target.bulan', $periode->tahun)->where('target.nama',$pegawai->nama)->where('kegiatan.tahun',$periode->tahun)->where('kegiatan.bulan',$periode->bulan)->where('kegiatan.nama',$pegawai->nama)->get();
-
-
 
         // foreach($data['query'] as $query){
         //     if($query->capaian != 0){
@@ -98,6 +96,13 @@ class HasilController extends Controller
 
     public function auto(){
         $data['periode'] = json_decode(request()->cookie('ekin-periode'));
+
+        $periode = json_decode(request()->cookie('ekin-periode'));
+
+        if(!isset($periode)){
+            return redirect(route('dashboard'))->with(['failed' => 'Silahkan pilih periode terlebih dahulu']);
+        }
+
 
         $pegawai = DataPegawai::where('api_id',Auth::user()->api_id)->first();
         $periode = json_decode(request()->cookie('ekin-periode'));

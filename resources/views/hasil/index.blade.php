@@ -137,7 +137,6 @@
 
                                          <?php $totaltambahan += ($nilai) ?>
                                     @endforeach
-
                                     @if ($totaltambahan >= 5)
                                         @php
                                         $totalnilai = 5;

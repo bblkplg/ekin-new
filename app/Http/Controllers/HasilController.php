@@ -13,6 +13,7 @@ use PDF;
 
 class HasilController extends Controller
 {
+
     public function index()
     {
         $data['periode'] = json_decode(request()->cookie('ekin-periode'));
@@ -24,6 +25,8 @@ class HasilController extends Controller
             return redirect(route('dashboard'))->with(['failed' => 'Silahkan pilih periode terlebih dahulu']);
         }
 
+        $overwrite = DB::table('hasil')->where('nama',Auth::user()->nama)->where('bulan',$periode->bulan)->where('tahun',$periode->tahun)->delete();
+
         // $year = date('Y');
         // $month = date('m',strtotime("-1 month"));
         $bulan = new Hasil();
@@ -32,7 +35,7 @@ class HasilController extends Controller
         $data['perilaku'] = Perilaku::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->get();
         $data['kegiatan'] = Kegiatan::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->where('tugas', 'Like', '%tambah%')->get();
 
-        $query = Kegiatan::select('kegiatan.tugas')
+        $query = Kegiatan::select('kegiatan.tugas');
 
 
 

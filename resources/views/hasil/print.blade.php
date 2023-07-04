@@ -185,7 +185,7 @@
                                         <td>Cepat mengenali masalah dan memprakarsai mengupayakan tindakan dan saran korektif</td>
                                         <td width="110px"><center>{{ '3 %' }}</td>
                                         <td width="110px"><center>{{ $data->inisiatif }}</td>
-                                            <?php $hasilinisiatif = (3/100 * $data->inisiatif)?>
+                                            <?php $hasilinisiatif = (3/100 * $data->inisiatif ?? '0.00')?>
                                         <td width="110px"><center>{{ number_format( $hasilinisiatif ?? '0.00',2)  }}</td>
                                     </tr>
                                     <tr>
@@ -225,10 +225,13 @@
                                                     <td width="110px"><center>{{ number_format($hasilsikap ?? '0.00',2)  }}</td>
                                     </tr>
                                     @endforeach
+
                                 </tbody>
                             </table>
-                                 @php $total_nilai = ($hasilinisiatif  + $hasilkeberadaan + $hasilkehandalan + $hasilkepatuhan + $hasilkerjasama + $hasilsikap); @endphp
-                                <h4 class="p-size" align="right" style="margin-right:30px; margin-top:-10px"><b>Jumlah Kuantitas : {{$total_nilai }}</b></h4>
+                                   @php
+                                     $total_nilai = (($hasilinisiatif ?? '0.00')+ ($hasilkeberadaan ?? '0.00') + ($hasilkehandalan ?? '0.00') + ($hasilkepatuhan ?? '0.00') + ($hasilkerjasama ?? '0.00') + ($hasilsikap ?? '0.00'));
+                                  @endphp
+                                <h4 class="p-size" align="right" style="margin-right:30px; margin-top:-10px"><b>Jumlah Kuantitas : {{number_format($total_nilai ?? '0.00', 2) }}</b></h4>
                                 <h4 class="p-size"><b>D. Kegiatan Tambahan</b></h4>
                                 <table class="table" border="4px" style="border-width:2px; border-color:black">
                                         <thead>
@@ -270,7 +273,7 @@
 
                                         </tbody>
                                     </table>
-                                        <h4 class="p-size" align="right" style="margin-right:30px; margin-top:-10px"><b>Kegiatan Tambahan : {{$totalnilai }}</b></h4>
+                                        <h4 class="p-size" align="right" style="margin-right:30px; margin-top:-10px"><b>Kegiatan Tambahan : {{$totalnilai ?? '0.00'}}</b></h4>
                                         <?php $totalperilaku=0; ?>
                                         @foreach($perilaku as $data)
                                              <?php $totalperilaku += $data->jumlah ?>

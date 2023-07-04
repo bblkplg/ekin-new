@@ -59,7 +59,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('hasil')}}" class="nav-link  {{ request()->is('hasil') ? 'active' : '' }}">
+            <a href="{{ route('hitung')}}" class="nav-link  {{ request()->is('hasil') ? 'active' : '' }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Hasil

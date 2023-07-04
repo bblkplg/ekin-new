@@ -8,6 +8,7 @@ class Hasil extends Model
 {
     protected $table = 'hasil';
     protected $guarded = [];
+    public $timestamps = false;
 
     public function bulan($month)
     {

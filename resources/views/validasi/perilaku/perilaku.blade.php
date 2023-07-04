@@ -30,7 +30,7 @@
                         <td><input type="number" name="keberadaan" id="keberadaan" min="0" max="4" step=".01"
                                 class="form-control " placeholder="0.00" value="{{$perilakuhasil->keberadaan ?? '0.00'}}" required=""></td>
                         <td>15%</td>
-                        <td style="width:130px"><input type="text"  name="keberadaan_hasil" id="keberadan_hasil" class="form-control txt" value="{{(($perilakuhasil->keberadaan * 15)/100) ?? '0.00'}}" readonly></td>
+                        <td style="width:130px"><input type="text"  name="keberadaan_hasil" id="keberadan" class="form-control txt" value="{{(($perilakuhasil->keberadaan * 15)/100) ?? '0.00'}}" readonly></td>
                     </tr>
                     <tr>
                         <td>Inisiatif</td>

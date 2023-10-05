@@ -15,6 +15,7 @@ use DB;
 
 class HasilController extends Controller
 {
+
     public function index()
     {
         $data['periode'] = json_decode(request()->cookie('ekin-periode'));
@@ -26,6 +27,8 @@ class HasilController extends Controller
             return redirect(route('dashboard'))->with(['failed' => 'Silahkan pilih periode terlebih dahulu']);
         }
 
+        $overwrite = DB::table('hasil')->where('nama',Auth::user()->nama)->where('bulan',$periode->bulan)->where('tahun',$periode->tahun)->delete();
+
         // $year = date('Y');
         // $month = date('m',strtotime("-1 month"));
         $bulan = new Hasil();
@@ -33,8 +36,16 @@ class HasilController extends Controller
         $data['all'] = Hasil::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->get();
         $data['kualitas'] = Kualitas::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->get();
         $data['perilaku'] = Perilaku::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->get();
+<<<<<<< HEAD
+        $data['kegiatan'] = Kegiatan::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->where('tugas', 'Like', '%tambah%')->get();
+
+        $query = Kegiatan::select('kegiatan.tugas');
+
+
+=======
         $data['kegiatan'] = Kegiatan::where('bulan', $periode->bulan)->where('tahun', $periode->tahun)->where('nama',$pegawai->nama)->where('tugas', 'Like', 'Kegiatan Tambahan')->get();
         $data['query'] =  DB::table('Kegiatan')->join('target','target.tugas','kegiatan.tugas')->select('target.tugas','target','persentase', DB::raw('Sum(kegiatan.mulai) as capaian'))->groupby('target.tugas','target.target','target.persentase')->where('target.bulan', $periode->tahun)->where('target.nama',$pegawai->nama)->where('kegiatan.tahun',$periode->tahun)->where('kegiatan.bulan',$periode->bulan)->where('kegiatan.nama',$pegawai->nama)->get();
+>>>>>>> 8bd8d282ec5f0a48ace6768582d2ab849de6b7f4
 
         // foreach($data['query'] as $query){
         //     if($query->capaian != 0){

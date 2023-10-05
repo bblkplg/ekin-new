@@ -34,19 +34,19 @@
 
                                 <div class="form-group">
                                     <label for="nama">Nama</label>
-                                    <input type="text" name="nama" class="form-control" value="{{ $target->nama }}" required disabled>
+                                    <input type="text" name="nama" class="form-control" value="{{ $target->nama }}"  readonly>
                                     <p class="text-danger">{{ $errors->first('nama') }}</p>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="instalasi">Instalasi</label>
-                                    <input type="text" name="instalasi" class="form-control" value="{{ $target->instalasi }}" required disabled>
+                                    <input type="text" name="instalasi" class="form-control" value="{{ $target->instalasi }}" readonly>
                                     <p class="text-danger">{{ $errors->first('instalasi') }}</p>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="bulan">Tahun</label>
-                                    <input type="text" name="bulan" class="form-control" value="{{ $target->bulan }}" required disabled>
+                                    <input type="text" name="bulan" class="form-control" value="{{ $target->bulan }}" readonly>
                                     <p class="text-danger">{{ $errors->first('bulan') }}</p>
                                 </div>
 
